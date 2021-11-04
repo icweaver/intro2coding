@@ -4,6 +4,16 @@
 using Markdown
 using InteractiveUtils
 
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    quote
+        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
+        el
+    end
+end
+
 # ╔═╡ 3535775c-2d63-4c92-8c22-8f47b9e2b294
 using PlutoUI, PyCall
 
@@ -314,6 +324,77 @@ Your thoughts here:
 
 """
 
+# ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
+md"""
+## Variables
+
+In the code above, we also encountered variables for the first time.
+
+Let's take a look at how variables work (hint: it's similar to how they work in math!). In the code below, `foo`, `bar`, and `foobar` are all **variables**:
+
+```Julia
+foo = 1
+bar = 2
+
+foobar = 1 + 2
+
+println(foobar)
+println(typeof(foobar))
+
+foobar = "hello!"
+
+println(foobar)
+println(typeof(foobar))
+```
+
+!!! warning "🐍"
+	```Python
+	foo = 1
+	bar = 2
+	
+	foobar = 1 + 2
+	
+	print(foobar)
+	print(type(foobar))
+	
+	foobar = "hello!"
+	
+	print(foobar)
+	print(type(foobar))
+	```
+
+Before you run this cell, write down below what you expect it to print out:
+"""
+
+# ╔═╡ 3b245074-ffaf-49dd-a989-bbb2da2e3518
+md"""
+Your guess here:
+
+"""
+
+# ╔═╡ 58673c8e-a333-4c96-928a-5305ffdce8c7
+md"""
+Run cell: $(@bind run_variables_cell CheckBox())
+"""
+
+# ╔═╡ 4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
+if run_variables_cell
+	with_terminal() do
+		foo = 1
+		bar = 2
+		
+		foobar = 1 + 2
+		
+		println(foobar)
+		println(typeof(foobar))
+		
+		foobar = "hello!"
+		
+		println(foobar)
+		println(typeof(foobar))
+	end
+end
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -562,5 +643,9 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═69ba8980-e0bd-4d6b-b881-378bebcade04
 # ╟─59d0886f-b328-4081-abe0-503ac9d11266
 # ╠═5ae296b7-81f2-4328-94d7-576bcfb5a8a2
+# ╟─98944a79-cead-4110-9fb1-78600b47b2d6
+# ╠═3b245074-ffaf-49dd-a989-bbb2da2e3518
+# ╟─58673c8e-a333-4c96-928a-5305ffdce8c7
+# ╟─4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
