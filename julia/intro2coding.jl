@@ -395,6 +395,152 @@ if run_variables_cell
 	end
 end
 
+# ╔═╡ ea2203a9-922c-4183-a78d-540ee7a87467
+md"""
+## How Computers Read Code
+
+At this point, you know enough code to start learning about how computers read code. This concept isn't generally taught in intro programming tutorials, but I think it's invalauble for debugging (finding errors), writing fast code, and a whole host of other things. Here is a nice overview of these concepts from the CrashCourse YouTube series:
+"""
+
+# ╔═╡ 91493fcc-4cb0-4532-ad57-c4e1dae4ddce
+html"""
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/RU1u-js7db8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+"""
+
+# ╔═╡ beb7f1d0-b337-4137-a131-bd0e9c2c1200
+md"""
+To briefly summarize, there are three main steps in the process of a computer running some code: parsing, compiling, and executing.
+
+**Parsing** is the process of translating the code to units that the computer can understand. You can think of parsing as populating an "environment" (list) of currently defined variables and using this to translate later lines.
+
+!!! danger "Disclaimer"
+	This is pretty simplified! The boundary between parsing and compiling is pretty blurry, so these exact
+	definitions may change depending on what language you're using. 
+
+**Example 1:**
+"""
+
+# ╔═╡ 446a31b4-f0ad-43d7-a611-3470815b840a
+begin
+	var1 = "hello "
+	var2 = "there!"
+	newvar = var1 * var2
+end
+
+# ╔═╡ 6c059624-7167-4721-b973-d3a34f035b32
+md"""
+!!! warning "🐍"
+	```Python
+	var1 = "hello "
+	var2 = "there!"
+	newvar = var1 + var2
+	```
+"""
+
+# ╔═╡ b43cde6e-dac3-4e8f-8e32-a43812ed2a5a
+md"""
+After parsing the first line, the environment looks like:
+
+```
+var1 -> "hello " (type String)
+```
+
+After parsing the second line, the environment looks like:
+
+```
+var1 -> "hello " (type String)
+var2 -> "there!" (type String)
+```
+
+After parsing the third line, the environment looks like:
+
+```
+var1 -> "hello " (type String)
+var2 -> "there!" (type String)
+newvar -> output of function "*" acting on "hello " and "there!" (type String)
+```
+"""
+
+# ╔═╡ bf2fbeaf-23d8-48b7-bfbc-f257d8539412
+md"""
+**Example 2:**
+
+Try doing this yourself with the following code:
+
+```Julia
+myvar = 3.5
+
+function my_new_function()
+  return "what's up?"
+end
+
+anothervar = my_new_function()
+```
+
+!!! warning "🐍"
+	```Python
+	myvar = 3.5
+	
+	def my_new_function():
+	  return "what's up?"
+	
+	anothervar = my_new_function()
+	```
+
+After parsing the first line, the environment looks like:
+"""
+
+# ╔═╡ cd8b6d99-8570-4c69-a8cc-59c9be07a3fa
+md"""
+Your answer here:
+
+"""
+
+# ╔═╡ ca1a3229-5b89-4038-812f-d896f3affd0a
+md"""
+After parsing the second & third lines, the environment looks like:
+"""
+
+# ╔═╡ 5dd05f46-d7ee-4a24-84b0-8fa1e0b168cb
+md"""
+Your answer here:
+
+"""
+
+# ╔═╡ ddb3498b-fd63-46d4-855f-ce13ba494811
+md"""
+After parsing the fourth line, the environment looks like:
+"""
+
+# ╔═╡ ff0b17c6-a91c-4640-9cdb-da69a351c9e3
+md"""
+Your answer here:
+
+"""
+
+# ╔═╡ bc746e9f-02fa-42f2-8a0d-4243d3e63918
+md"""
+The second step, **compiling**, involves translating the parsed code into machine-readable code. In Python, this is a several step process involving translating to C, then compiling the C code into machine-readable code (think 1s and 0s). In Julia, the process is significantly streamlined, allowing for a [more direct route](https://docs.julialang.org/en/v1/manual/faq/#Why-don't-you-compile-Matlab/Python/R/%E2%80%A6-code-to-Julia?) from "human language" to optimized "machine language". In other words, Julia gives the compiler more chances to do what it does best!
+
+The last step is actually running the machine-readable code and returning the answer to you! This is often called **execution**.
+
+After compilation and execution, the environment from our first example looks like this:
+
+```
+var1 -> "hello " (type String)
+var2 -> "there!" (type String)
+newvar -> "hello there!" (type String)
+```
+
+What does the environment from the second example look like after execution?
+"""
+
+# ╔═╡ 17dee10b-24c4-44ac-b8dc-f2689d38700c
+md"""
+Your answer here!
+
+"""
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -601,7 +747,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 """
 
 # ╔═╡ Cell order:
-# ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─9c238f5b-3981-4aef-be52-b50e5b832b69
 # ╟─1021e2b0-3d2e-11ec-2bec-9daa7040f116
 # ╟─400ca605-6e11-492d-ad5c-ffade9cf3941
@@ -647,5 +792,20 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═3b245074-ffaf-49dd-a989-bbb2da2e3518
 # ╟─58673c8e-a333-4c96-928a-5305ffdce8c7
 # ╟─4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
+# ╟─ea2203a9-922c-4183-a78d-540ee7a87467
+# ╟─91493fcc-4cb0-4532-ad57-c4e1dae4ddce
+# ╟─beb7f1d0-b337-4137-a131-bd0e9c2c1200
+# ╠═446a31b4-f0ad-43d7-a611-3470815b840a
+# ╟─6c059624-7167-4721-b973-d3a34f035b32
+# ╟─b43cde6e-dac3-4e8f-8e32-a43812ed2a5a
+# ╟─bf2fbeaf-23d8-48b7-bfbc-f257d8539412
+# ╠═cd8b6d99-8570-4c69-a8cc-59c9be07a3fa
+# ╟─ca1a3229-5b89-4038-812f-d896f3affd0a
+# ╠═5dd05f46-d7ee-4a24-84b0-8fa1e0b168cb
+# ╟─ddb3498b-fd63-46d4-855f-ce13ba494811
+# ╠═ff0b17c6-a91c-4640-9cdb-da69a351c9e3
+# ╟─bc746e9f-02fa-42f2-8a0d-4243d3e63918
+# ╠═17dee10b-24c4-44ac-b8dc-f2689d38700c
+# ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
