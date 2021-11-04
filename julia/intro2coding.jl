@@ -14,11 +14,14 @@ macro bind(def, element)
     end
 end
 
-# ╔═╡ 3535775c-2d63-4c92-8c22-8f47b9e2b294
-using PlutoUI, PyCall
-
 # ╔═╡ ca980f8f-10f1-45b4-ad4a-2b445059591e
 using Colors
+
+# ╔═╡ 6e694ce6-a3ad-4947-869b-eba8e595ad63
+using PyCall
+
+# ╔═╡ 3535775c-2d63-4c92-8c22-8f47b9e2b294
+using PlutoUI
 
 # ╔═╡ 9c238f5b-3981-4aef-be52-b50e5b832b69
 md"""
@@ -709,8 +712,38 @@ range(colorant"blue", colorant"red")
 
 # ╔═╡ 542052e5-2cf4-485a-b9fe-153a14a24cab
 md"""
-Without needing to edit the source code of the "base" version of `range`, we were able to effortlessly extend its functionality by `using` a separate package, which was also automatically downloaded and installed for us thanks to the nice people behind `Pluto.jl` 🍉
+Without needing to edit the source code of the "base" version of `range`, we were able to seamlessly extend its functionality by `using` a separate package, which was also automatically downloaded and installed for us thanks to the nice people behind `Pluto.jl` 🍉
 """
+
+# ╔═╡ 13e830da-f5c0-4746-ae26-c7ed5c1647fb
+md"""
+## Interoperability
+
+Finally, we don't need to choose between using one language over the other. With [PyCall.jl](https://github.com/JuliaPy/PyCall.jl#specifying-the-python-version), we can write Python code as-is:
+"""
+
+# ╔═╡ 3fc8a3d3-a0c8-4fff-8bac-b2001f777d58
+begin
+	py"""
+	import numpy as np
+	
+	def make_range(x):
+		return np.arange(x)
+	"""
+	
+	py"make_range"(5)
+end
+
+# ╔═╡ 11659079-6d41-499e-8e1c-900a353eedba
+md"""
+and can even work with modules directly:
+"""
+
+# ╔═╡ a6a38cc9-9bb0-4481-b566-2fe2cd356cde
+np = pyimport("numpy")
+
+# ╔═╡ 0a846828-e9a7-4be5-b4ac-1001015d8cd9
+np.linspace(1, 10, 3)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1012,7 +1045,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─85460bab-f096-45a5-a020-285fea1901b7
 # ╟─a2685d04-459b-4919-aa70-6e350e6a0571
 # ╠═6d8f33b7-dcba-42eb-8966-887a5fb3a535
-# ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─908f0673-ee21-4771-b572-58c9bc9cfea2
 # ╠═bc13de91-da69-467b-ba54-d2891791e77d
 # ╟─7ec3b70d-4f17-4534-bb10-98674b783239
@@ -1025,5 +1057,12 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─9b35dcb2-584f-459f-8d84-a7c73eb6ea3f
 # ╠═cfbd1f1e-af46-48a0-8a4b-25b7cd538a2e
 # ╟─542052e5-2cf4-485a-b9fe-153a14a24cab
+# ╟─13e830da-f5c0-4746-ae26-c7ed5c1647fb
+# ╠═6e694ce6-a3ad-4947-869b-eba8e595ad63
+# ╠═3fc8a3d3-a0c8-4fff-8bac-b2001f777d58
+# ╟─11659079-6d41-499e-8e1c-900a353eedba
+# ╠═a6a38cc9-9bb0-4481-b566-2fe2cd356cde
+# ╠═0a846828-e9a7-4be5-b4ac-1001015d8cd9
+# ╟─3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
