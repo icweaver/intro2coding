@@ -17,9 +17,18 @@ end
 # ╔═╡ 3535775c-2d63-4c92-8c22-8f47b9e2b294
 using PlutoUI, PyCall
 
+# ╔═╡ ca980f8f-10f1-45b4-ad4a-2b445059591e
+using Colors
+
 # ╔═╡ 9c238f5b-3981-4aef-be52-b50e5b832b69
 md"""
 # Intro to Coding 🌳
+
+```
+> Wait, this isn't a Jupyter notebook
+```
+
+Nope, it's [Pluto.jl](https://www.youtube.com/watch?v=IAF8DjrQSSk)! It's a new take on notebooks that's kind of like an Excel spreadsheet, with reactive cells that talk to each other, responsive widgets, [and more™](https://youtu.be/HiI4jgDyDhY) 🍉
 
 $(TableOfContents())
 """
@@ -30,18 +39,32 @@ md"""
 
 Sarah Blunt (2021)
 
-This tutorial takes you through some foundational Python operations, from the perspective of a research astronomer. It aims to provide a bit of backround on how computers interpret code, while at the same time showing you what you need to type in order to make things work.
+This tutorial takes you through some foundational programming operations, from the perspective of a research astronomer. It aims to provide a bit of backround on how computers interpret code, while at the same time showing you what you need to type in order to make things work.
 
-I absolutely encourage you to look up other intro Python tutorials on the internet (e.g. <https://www.learnpython.org/>)! There are some excellent free resources out there.
+I absolutely encourage you to look up other intro programming tutorials on the internet (e.g. <https://www.learnpython.org/>)! There are some excellent free resources out there. For a more modern, STEM oriented programming language (which this notebook is based in), we recommend checking out [Julia](https://computationalthinking.mit.edu/Spring21/).
 
 The main part of this lesson is designed to take 1 hour, and to be executed independently while an instructor walks around to answer questions and give hints.
 
 The mini-projects at the very end are open-ended, and may take between 10 mins and a few hours each. The idea is to pick one (or a few) to work on, rather than aiming to complete all of them.
 
 By the end of this tutorial, you will be able to:
-* Use comments, variables, functions, conditionals, loops, and imports to write Python code.
-* Identify objects of type str, float, int, function, and bool, and use Python's type function to check.
+* Use comments, variables, functions, conditionals, loops, and imports to write code.
+* Identify objects of type `String`, `Float`, `Integer`, `Function`, and `Bool`, and know ways to check.
 * Explain the three main steps a computer executes while running code, and analyze the current state of the local environment after each line is parsed.
+
+Throughout this notebook, we will show Julia code, highlighted along with equivalent Python code:
+
+```Julia
+function my_awesome_julia_function(x, y)
+	return x + y
+end
+```
+
+!!! warning "🐍"
+	```Python
+	def my_awesome_python_function(x, y):
+		return x + y
+	```
 """
 
 # ╔═╡ 400ca605-6e11-492d-ad5c-ffade9cf3941
@@ -624,13 +647,80 @@ for each person in the list `["Sarah", "Jason", "BJ"]` if the person's name has 
 
 #####################
 
+# ╔═╡ 908f0673-ee21-4771-b572-58c9bc9cfea2
+md"""
+## Imports
+
+The last thing I'd like to introduce is imports. Python's popularity is due (in no small part!) to its extensive collection of useful code written by people other than the primary developers. These collections of code are called "packages" or "libraries." You can use packages by importing them. Similarly, the Julia [ecosystem](https://julialang.org/community/#julia_github_orgs) of packages is very rich, actively developed, and [composable](https://www.youtube.com/watch?v=kc9HwsxE1OY).
+
+Let's look at an example in Python: 
+
+!!! warning "🐍"
+	```Python
+	import numpy as np
+	
+	print(np.arange(10))
+	```
+
+In the two lines above, we've imported a package (numpy), told our computer that we want to call this package `np` (instead of the more unweidly "numpy"), then used the function `arange` from numpy, which prints out all whole numbers smaller than the input number. Notice that we can't use `arange` alone, we have to use `np.arange` to tell the computer that this function comes from numpy.
+
+Julia has the advantage of being built from the ground up with scientific computing in mind, so this is already baked into the language:
+"""
+
+# ╔═╡ bc13de91-da69-467b-ba54-d2891791e77d
+collect(1:10)
+
+# ╔═╡ 7ec3b70d-4f17-4534-bb10-98674b783239
+md"""
+!!! note
+	As you might have noticed, Julia is also 1-based indexed. This seems to be a point of contention for a lot of people for some reason, but it [doesn't have to be](https://github.com/giordano/StarWarsArrays.jl). You can use whatever base makes you happy.
+"""
+
+# ╔═╡ c61ef8ae-a8ee-48fd-bd3b-8c21912b5c2b
+md"""
+Importing packages also follow a similar syntax to Python. Unlike Python though, we can also import packages without needing to qualify them with a package name alias like `np`. For example, take the built-in function `range`:
+"""
+
+# ╔═╡ 7c66b494-b755-47b8-bdac-969d539a24e5
+range
+
+# ╔═╡ 515ebad0-a335-4cb3-9ed8-37a2dc3c7042
+md"""
+It has two methods defined for it. This means that based on the kinds inputs we pass to it, it will perform a specific operation, all without needing to come up with a new name for it, like `range_1` or `range_2`! This is known as [multiple dispatch](https://www.oxinabox.net/2020/02/09/whycompositionaljulia.html), and it has many deep, far-reaching, and emergent benefits.
+
+Going back to our `range` example, let's now import the `Colors` package, which let's us work with, well, colors 🌈:
+"""
+
+# ╔═╡ 46a4f56a-7883-4305-af11-dfc6d29a0901
+md"""
+We now see that we magically have additonal methods now assigned to this function!
+"""
+
+# ╔═╡ 21958347-5f91-470c-9ffe-5c8dca7be0ca
+range
+
+# ╔═╡ 9b35dcb2-584f-459f-8d84-a7c73eb6ea3f
+md"""
+Let's try it out:
+"""
+
+# ╔═╡ cfbd1f1e-af46-48a0-8a4b-25b7cd538a2e
+range(colorant"blue", colorant"red")
+
+# ╔═╡ 542052e5-2cf4-485a-b9fe-153a14a24cab
+md"""
+Without needing to edit the source code of the "base" version of `range`, we were able to effortlessly extend its functionality by `using` a separate package, which was also automatically downloaded and installed for us thanks to the nice people behind `Pluto.jl` 🍉
+"""
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
+Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 
 [compat]
+Colors = "~0.12.8"
 PlutoUI = "~0.7.18"
 PyCall = "~1.92.5"
 """
@@ -654,6 +744,18 @@ uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 [[Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
+[[ColorTypes]]
+deps = ["FixedPointNumbers", "Random"]
+git-tree-sha1 = "024fe24d83e4a5bf5fc80501a314ce0d1aa35597"
+uuid = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
+version = "0.11.0"
+
+[[Colors]]
+deps = ["ColorTypes", "FixedPointNumbers", "Reexport"]
+git-tree-sha1 = "417b0ed7b8b838aa6ca0a87aadf1bb9eb111ce40"
+uuid = "5ae59095-9a9b-59fe-a467-6f913c188581"
+version = "0.12.8"
+
 [[Conda]]
 deps = ["JSON", "VersionParsing"]
 git-tree-sha1 = "299304989a5e6473d985212c28928899c74e9421"
@@ -667,6 +769,12 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 [[Downloads]]
 deps = ["ArgTools", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+
+[[FixedPointNumbers]]
+deps = ["Statistics"]
+git-tree-sha1 = "335bfdceacc84c5cdf16aadc768aa5ddfc5383cc"
+uuid = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
+version = "0.8.4"
 
 [[Hyperscript]]
 deps = ["Test"]
@@ -792,6 +900,14 @@ uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 [[Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
 
+[[SparseArrays]]
+deps = ["LinearAlgebra", "Random"]
+uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+
+[[Statistics]]
+deps = ["LinearAlgebra", "SparseArrays"]
+uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+
 [[TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
@@ -897,5 +1013,17 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─a2685d04-459b-4919-aa70-6e350e6a0571
 # ╠═6d8f33b7-dcba-42eb-8966-887a5fb3a535
 # ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
+# ╟─908f0673-ee21-4771-b572-58c9bc9cfea2
+# ╠═bc13de91-da69-467b-ba54-d2891791e77d
+# ╟─7ec3b70d-4f17-4534-bb10-98674b783239
+# ╟─c61ef8ae-a8ee-48fd-bd3b-8c21912b5c2b
+# ╠═7c66b494-b755-47b8-bdac-969d539a24e5
+# ╟─515ebad0-a335-4cb3-9ed8-37a2dc3c7042
+# ╠═ca980f8f-10f1-45b4-ad4a-2b445059591e
+# ╟─46a4f56a-7883-4305-af11-dfc6d29a0901
+# ╠═21958347-5f91-470c-9ffe-5c8dca7be0ca
+# ╟─9b35dcb2-584f-459f-8d84-a7c73eb6ea3f
+# ╠═cfbd1f1e-af46-48a0-8a4b-25b7cd538a2e
+# ╟─542052e5-2cf4-485a-b9fe-153a14a24cab
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
