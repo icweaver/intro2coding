@@ -38,7 +38,7 @@ By the end of this tutorial, you will be able to:
 md"""
 ## Comments
 
-In coding/programming, comments are lines starting with one or more special characters. In Julia and Python, these are `#` for single line comments, or `\"""` wrapped around multi-line comments. The computer treats them as if they don't exist! 
+In coding/programming, comments are lines starting with one or more special characters, and are not run. In Julia, these are `#` for single line comments or `#=` `=#` wrapped around multi-line comments, like an open and close parenthesis. In Python, the equivalents are `#` and `\"""`. The computer treats them as if they don't exist! 
 """
 
 # ╔═╡ 11e3ad1e-588c-4d37-aa49-2d6d996c2900
@@ -80,7 +80,7 @@ end
 
 # ╔═╡ 9b57c6ec-56e5-4658-b5c5-72b4cff06be1
 md"""
-!!! tip "🐍"
+!!! warning "🐍"
 
 	```Python
 	print("Hello my friend!")
@@ -112,14 +112,14 @@ md"""
 
 What's the difference between:
 
-```julia
-	println("Hello my friend!")
+```Julia
+println("Hello my friend!")
 ```
 
 and
 
-```
-	println(Hello World!)
+```Julia
+println(Hello World!)
 ```
 
 What happens when you try running it?
@@ -143,7 +143,7 @@ Here are a few examples of some important types:
 13.4    # type "Float64"
 ```
 
-!!! tip "🐍"
+!!! warning "🐍"
 	```Python
 	"hello" # type "str" (short for "string")
 	13      # type "int" (short for "integer")
@@ -162,7 +162,7 @@ end
 
 # ╔═╡ 2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
 md"""
-!!! tip "🐍"
+!!! warning "🐍"
 	```Python
 	print(type("hello"))
 	print(type(13))
@@ -188,6 +188,130 @@ What would you guess are the types of the following? Use the `typeof` function t
 md"""
 !!! hint "Answer"
 	String, Float64, Int64
+"""
+
+# ╔═╡ d6d039cf-beea-49cf-83dd-96542e08ee4a
+md"""
+## Functions
+
+You've actually already encountered a fourth type: functions!
+"""
+
+# ╔═╡ f0dc721a-45fa-45e1-a31d-6dac6ff96d99
+println isa Function
+
+# ╔═╡ bc6ec879-d744-4d04-ab47-a383b69404d1
+md"""
+!!! warning "🐍"
+	```Python
+	type(print)
+	```
+"""
+
+# ╔═╡ 000cbb49-8dbf-4f3b-bca4-9825890e442a
+md"""
+Functions operate very similarly to how they do in math. Let's define our own function to see how they work:
+"""
+
+# ╔═╡ 1cfc3faf-81ed-40a8-bb42-d6dfc9f791a1
+# This defines how the function works
+function my_function()
+	println("hello!")
+end
+
+# ╔═╡ d3da42a6-1392-47dc-b470-be04ae82390f
+md"""
+!!! warning "🐍"
+	```Python
+	def my_function():
+		print("hello!")
+	```
+"""
+
+# ╔═╡ 84224027-e070-4c9d-8a61-87d2f37c215e
+# This runs the function
+with_terminal() do
+	my_function()
+end
+
+# ╔═╡ 284b2544-9582-4adb-8bd7-186f55fce6f7
+md"""
+What do you think would happen if we didn't run the function (i.e. removed the line above?)
+"""
+
+# ╔═╡ 181f6657-bea2-4907-9372-a821a79b9b6e
+md"""
+!!! tip
+	Another way to define functions in Julia is like this:
+	```Julia
+	my_function() = println("hello!")
+	```
+"""
+
+# ╔═╡ ff6f9fed-0b2a-44be-abef-3e61f0764fb8
+md"""
+You can also write functions that use **arguments**. Here's an example:
+"""
+
+# ╔═╡ 000d55b8-ed16-4a22-aac7-f1acbb7a34da
+my_function_with_args(first_arg, second_arg) = println(first_arg * second_arg)
+
+# ╔═╡ eb3b0a5a-aa98-4a92-b0c4-bd2ba5a82f0c
+md"""
+!!! warning "🐍"
+	```Python
+	def my_function_with_args(first_arg, second_arg):
+		print(first_arg + second_arg)
+	```
+"""
+
+# ╔═╡ 71ac570e-8dc5-4264-8a2a-3a213f81e962
+md"""
+Figure out how to run this function on two "int"s. What do you think will happen if you try to run it on two "str"s?
+"""
+
+# ╔═╡ f5dc6525-5ddc-4e48-8144-9413b2272c27
+with_terminal() do
+	## your code here: ##
+
+	#####################
+end
+
+# ╔═╡ a4097197-b224-4002-8408-4374258a4a45
+md"""
+One last thing to know about functions: they can also "return" something. Here's an example:
+"""
+
+# ╔═╡ 285d58f4-b42c-45fb-a741-767022f56f69
+function my_returning_function(arg1, arg2)
+	intermediate_variable = arg1 + arg2
+	return intermediate_variable
+end
+
+# ╔═╡ b720baa8-143c-488f-b297-29ca987b3a51
+md"""
+!!! warning "🐍"
+	```Python
+	def my_returning_function(arg1, arg2):
+		intermediate_variable = arg1 + arg2
+		return intermediate_variable
+	```
+"""
+
+# ╔═╡ 69ba8980-e0bd-4d6b-b881-378bebcade04
+# Run the function
+foo = my_returning_function(1, 2)
+
+# ╔═╡ 59d0886f-b328-4081-abe0-503ac9d11266
+md"""
+If trying this in Python, why didn't running this cell do anything? How could you get Python to tell you what `foo` is?
+"""
+
+# ╔═╡ 5ae296b7-81f2-4328-94d7-576bcfb5a8a2
+md"""
+Your thoughts here:
+
+
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -407,7 +531,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─1a6c18a7-5863-4052-b823-ad26498dfa13
 # ╠═5cb30b47-15ea-461c-b59d-900fda3651d0
 # ╟─9b57c6ec-56e5-4658-b5c5-72b4cff06be1
-# ╠═0d4c809b-a39e-4353-9746-21ae9c78137b
+# ╟─0d4c809b-a39e-4353-9746-21ae9c78137b
 # ╟─24712474-2d6f-4854-a335-ab0a3719b750
 # ╠═8c5cf9ce-100a-4a80-aa82-91896960f480
 # ╟─96d58ab3-92a5-41e8-8bba-6f75e787558b
@@ -418,5 +542,25 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─e3655b35-4bb9-42ad-a1a8-23549efd519a
 # ╠═69b69d34-f4e7-4c98-875d-7d80ed487c26
 # ╟─e9a938bf-ba07-4181-b347-66fd5eab280e
+# ╟─d6d039cf-beea-49cf-83dd-96542e08ee4a
+# ╠═f0dc721a-45fa-45e1-a31d-6dac6ff96d99
+# ╟─bc6ec879-d744-4d04-ab47-a383b69404d1
+# ╟─000cbb49-8dbf-4f3b-bca4-9825890e442a
+# ╠═1cfc3faf-81ed-40a8-bb42-d6dfc9f791a1
+# ╟─d3da42a6-1392-47dc-b470-be04ae82390f
+# ╠═84224027-e070-4c9d-8a61-87d2f37c215e
+# ╟─284b2544-9582-4adb-8bd7-186f55fce6f7
+# ╟─181f6657-bea2-4907-9372-a821a79b9b6e
+# ╟─ff6f9fed-0b2a-44be-abef-3e61f0764fb8
+# ╠═000d55b8-ed16-4a22-aac7-f1acbb7a34da
+# ╟─eb3b0a5a-aa98-4a92-b0c4-bd2ba5a82f0c
+# ╟─71ac570e-8dc5-4264-8a2a-3a213f81e962
+# ╠═f5dc6525-5ddc-4e48-8144-9413b2272c27
+# ╟─a4097197-b224-4002-8408-4374258a4a45
+# ╠═285d58f4-b42c-45fb-a741-767022f56f69
+# ╟─b720baa8-143c-488f-b297-29ca987b3a51
+# ╠═69ba8980-e0bd-4d6b-b881-378bebcade04
+# ╟─59d0886f-b328-4081-abe0-503ac9d11266
+# ╠═5ae296b7-81f2-4328-94d7-576bcfb5a8a2
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
