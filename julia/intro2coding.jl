@@ -541,6 +541,89 @@ Your answer here!
 
 """
 
+# ╔═╡ 886b45e5-6d18-49bd-9765-e4d14e4eb9d4
+md"""
+## Conditionals and Loops
+
+Using a conditional tells your computer "do this ONLY IF this other thing is true". Let's take a look at how they work:
+"""
+
+# ╔═╡ 7f577e74-0030-4e6d-ba1d-dc931bd2566a
+with_terminal() do
+	a = 1
+	
+	if a == 1
+		println("yay!")
+	else
+		println("noooo")
+	end
+end
+
+# ╔═╡ dcf61c03-7d33-413e-a994-59de55b79ca0
+md"""
+!!! warning "🐍"
+	```Python
+	a = 1      # one equals sign to define a variable
+	
+	if a == 1: # two equals signs to check truth value
+		print("yay!")
+	else:
+		print("noooo")
+	```
+"""
+
+# ╔═╡ c36fc94b-5f6a-441c-8279-a290fe2a2d71
+md"""
+Let's take a look at another important structure in pretty much every coding language I know of)-- the for loop.
+
+Here's what a for loop looks like:
+
+```Julia
+for i in [0,1,2,3]
+	println(i)
+end
+```
+
+!!! warning "🐍"
+	```Python
+	for i in [0,1,2,3]:
+		print(i)
+	```
+
+What do you think will happen? Run the cell and see if you're right!
+
+Run cell: $(@bind run_loop_cell CheckBox())
+"""
+
+# ╔═╡ 85460bab-f096-45a5-a020-285fea1901b7
+if run_loop_cell
+	with_terminal() do
+		for i in [0,1,2,3]
+			println(i)
+		end
+	end
+end
+
+# ╔═╡ a2685d04-459b-4919-aa70-6e350e6a0571
+md"""
+**Exercise:** write some code that prints out:
+
+```
+"<<name>> is awesome!"
+```
+
+for each person in the list `["Sarah", "Jason", "BJ"]` if the person's name has more than 3 letters (sorry, BJ). Google how to use Julia's `length` function (Python's `len` function) to help you!
+"""
+
+# ╔═╡ 6d8f33b7-dcba-42eb-8966-887a5fb3a535
+## your code here: ##
+
+
+
+
+
+#####################
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -806,6 +889,13 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═ff0b17c6-a91c-4640-9cdb-da69a351c9e3
 # ╟─bc746e9f-02fa-42f2-8a0d-4243d3e63918
 # ╠═17dee10b-24c4-44ac-b8dc-f2689d38700c
+# ╟─886b45e5-6d18-49bd-9765-e4d14e4eb9d4
+# ╠═7f577e74-0030-4e6d-ba1d-dc931bd2566a
+# ╟─dcf61c03-7d33-413e-a994-59de55b79ca0
+# ╟─c36fc94b-5f6a-441c-8279-a290fe2a2d71
+# ╟─85460bab-f096-45a5-a020-285fea1901b7
+# ╟─a2685d04-459b-4919-aa70-6e350e6a0571
+# ╠═6d8f33b7-dcba-42eb-8966-887a5fb3a535
 # ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
