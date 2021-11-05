@@ -79,13 +79,16 @@ In coding/programming, comments are lines starting with one or more special char
 
 # ╔═╡ 11e3ad1e-588c-4d37-aa49-2d6d996c2900
 # Try running this cell (by pressing `shift-enter` or selecting the play button
-# below this cell); nothing will happen.
+# below this cell); nothing will be displayed.
 
-# Why do you think we have comments, if they don't cause the computer to do anything?
+# ╔═╡ 2e063e4b-595a-4b54-84e8-9250d9d2b521
+md"""
+Why do you think we have comments, if they don't cause the computer to do anything?
+"""
 
 # ╔═╡ 6f23536e-1dea-4367-92e7-cc424f6cc2d4
 md"""
-Type your answer here:
+🟢 Your thoughts here:
 
 
 """
@@ -94,12 +97,6 @@ Type your answer here:
 md"""
 !!! note
 	The cell above is a [Markdown](https://www.markdownguide.org/basic-syntax/) string. We will talk more about strings later in the notebook. After you are finished typing in your answer, you can view the resulting output by running the cell, and hide the source code by selecing the eye icon on the left.
-"""
-
-# ╔═╡ 8547a71e-0508-4deb-9ad7-425f0b2ab50f
-md"""
-!!! tip
-	We can also create multi-line comments in Julia by wrapping them in `#=` and `=#` like an open and close parenthesis, respectively.
 """
 
 # ╔═╡ 1a6c18a7-5863-4052-b823-ad26498dfa13
@@ -155,7 +152,7 @@ println("Hello my friend!")
 and
 
 ```Julia
-println(Hello!)
+println(Hi)
 ```
 
 What happens when you try running it?
@@ -259,6 +256,7 @@ to make it print the desired output: `"Hello my friend!"`
 # ╔═╡ 017298fe-3a8f-415d-b712-134397c08256
 with_terminal() do
 ## your code here: ##
+
 	
 ####################
 end
@@ -276,8 +274,7 @@ md"""
 # ╔═╡ 99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 md"""
 ## Types
-There are many different kinds of variables, which we call **types**.
-Here are a few examples of some important types:
+There are many different kinds of variables, which we call **types**. These physically live on your computer and are stored/interpreted in different ways (think 1s and 0s). Here are a few examples of some important types:
 
 
 ```Julia
@@ -293,7 +290,7 @@ Here are a few examples of some important types:
 	13.4    # type "float"
 	```
 
-You can use the `typeof` function to figure out the types of each of these:
+You can use the `typeof` function (`type` in Python) to figure out the types of each of these:
 """
 
 # ╔═╡ fe340371-d8e2-4b1a-8b45-d1435cc98a62
@@ -325,13 +322,16 @@ What would you guess are the types of the following? Use the `typeof` function t
 """
 
 # ╔═╡ 69b69d34-f4e7-4c98-875d-7d80ed487c26
-# Your answer here
-
-# ╔═╡ e9a938bf-ba07-4181-b347-66fd5eab280e
 md"""
-!!! hint "Answer"
-	String, Float64, Int64
+🟢 Your thoughts here:
+
+
 """
+
+# ╔═╡ 8f1cae48-bb0e-466c-94d7-b79a6e18b497
+with_terminal() do
+# Scratch space for your code
+end
 
 # ╔═╡ d6d039cf-beea-49cf-83dd-96542e08ee4a
 md"""
@@ -411,7 +411,7 @@ md"""
 
 # ╔═╡ 71ac570e-8dc5-4264-8a2a-3a213f81e962
 md"""
-Figure out how to run this function on two "int"s. What do you think will happen if you try to run it on two "str"s?
+Figure out how to run this function on two `Int`s. What do you think will happen if you try to run it on two `String`s?
 """
 
 # ╔═╡ f5dc6525-5ddc-4e48-8144-9413b2272c27
@@ -423,7 +423,7 @@ end
 
 # ╔═╡ a4097197-b224-4002-8408-4374258a4a45
 md"""
-One last thing to know about functions: they can also "return" something. Here's an example:
+One last thing to know about functions: they can also `return` something. Here's an example:
 """
 
 # ╔═╡ 285d58f4-b42c-45fb-a741-767022f56f69
@@ -448,15 +448,20 @@ foo = my_returning_function(1, 2)
 
 # ╔═╡ 59d0886f-b328-4081-abe0-503ac9d11266
 md"""
-If trying this in Python, why didn't running this cell do anything? How could you get Python to tell you what `foo` is?
+If trying this in Python, why didn't running this cell do anything? How could you get Python to tell you what `foo` is (like Julia does by default)?
 """
 
 # ╔═╡ 5ae296b7-81f2-4328-94d7-576bcfb5a8a2
 md"""
-Your thoughts here:
+🟢 Your thoughts here:
 
 
 """
+
+# ╔═╡ cb11a2ae-5cb6-41e6-8032-946f7526fe01
+with_terminal() do
+# Scratch space for your code
+end
 
 # ╔═╡ ea2203a9-922c-4183-a78d-540ee7a87467
 md"""
@@ -1016,9 +1021,9 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─1021e2b0-3d2e-11ec-2bec-9daa7040f116
 # ╟─400ca605-6e11-492d-ad5c-ffade9cf3941
 # ╠═11e3ad1e-588c-4d37-aa49-2d6d996c2900
+# ╟─2e063e4b-595a-4b54-84e8-9250d9d2b521
 # ╠═6f23536e-1dea-4367-92e7-cc424f6cc2d4
 # ╟─8806bdae-d1dd-416d-a03d-742793e464fd
-# ╟─8547a71e-0508-4deb-9ad7-425f0b2ab50f
 # ╟─1a6c18a7-5863-4052-b823-ad26498dfa13
 # ╠═5cb30b47-15ea-461c-b59d-900fda3651d0
 # ╟─9b57c6ec-56e5-4658-b5c5-72b4cff06be1
@@ -1040,7 +1045,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
 # ╟─e3655b35-4bb9-42ad-a1a8-23549efd519a
 # ╠═69b69d34-f4e7-4c98-875d-7d80ed487c26
-# ╟─e9a938bf-ba07-4181-b347-66fd5eab280e
+# ╠═8f1cae48-bb0e-466c-94d7-b79a6e18b497
 # ╟─d6d039cf-beea-49cf-83dd-96542e08ee4a
 # ╠═f0dc721a-45fa-45e1-a31d-6dac6ff96d99
 # ╟─bc6ec879-d744-4d04-ab47-a383b69404d1
@@ -1061,6 +1066,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═69ba8980-e0bd-4d6b-b881-378bebcade04
 # ╟─59d0886f-b328-4081-abe0-503ac9d11266
 # ╠═5ae296b7-81f2-4328-94d7-576bcfb5a8a2
+# ╠═cb11a2ae-5cb6-41e6-8032-946f7526fe01
 # ╟─ea2203a9-922c-4183-a78d-540ee7a87467
 # ╟─91493fcc-4cb0-4532-ad57-c4e1dae4ddce
 # ╟─beb7f1d0-b337-4137-a131-bd0e9c2c1200
