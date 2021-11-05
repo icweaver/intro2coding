@@ -18,7 +18,7 @@ end
 using Colors
 
 # ╔═╡ 6e694ce6-a3ad-4947-869b-eba8e595ad63
-using PyCall
+using PyCall, Conda
 
 # ╔═╡ 3535775c-2d63-4c92-8c22-8f47b9e2b294
 using PlutoUI
@@ -240,7 +240,8 @@ println isa Function
 md"""
 !!! warning "🐍"
 	```Python
-	type(print)
+	import types
+	isinstance(print, types.BuiltinFunctionType)
 	```
 """
 
@@ -676,7 +677,7 @@ collect(1:10)
 # ╔═╡ 7ec3b70d-4f17-4534-bb10-98674b783239
 md"""
 !!! note
-	As you might have noticed, Julia is also 1-based indexed. This seems to be a point of contention for a lot of people for some reason, but it [doesn't have to be](https://github.com/giordano/StarWarsArrays.jl). You can use whatever base makes you happy.
+	As you may have noticed, Julia is also 1-based indexed. This seems to be a point of contention for a lot of people for some reason, but it [doesn't have to be](https://github.com/giordano/StarWarsArrays.jl). You can use whatever base makes you happy.
 """
 
 # ╔═╡ c61ef8ae-a8ee-48fd-bd3b-8c21912b5c2b
@@ -687,24 +688,15 @@ Importing packages also follow a similar syntax to Python. Unlike Python though,
 # ╔═╡ 7c66b494-b755-47b8-bdac-969d539a24e5
 range
 
+# ╔═╡ 76593ae0-a878-43e2-b207-ac77641b2045
+md"""
+!!! tip
+	Select the "Live docs" tab after clicking on `range` to pull up its documentation
+"""
+
 # ╔═╡ 515ebad0-a335-4cb3-9ed8-37a2dc3c7042
 md"""
-It has two methods defined for it. This means that based on the kinds inputs we pass to it, it will perform a specific operation, all without needing to come up with a new name for it, like `range_1` or `range_2`! This is known as [multiple dispatch](https://www.oxinabox.net/2020/02/09/whycompositionaljulia.html), and it has many deep, far-reaching, and emergent benefits.
-
-Going back to our `range` example, let's now import the `Colors` package, which let's us work with, well, colors 🌈:
-"""
-
-# ╔═╡ 46a4f56a-7883-4305-af11-dfc6d29a0901
-md"""
-We now see that we magically have additonal methods now assigned to this function!
-"""
-
-# ╔═╡ 21958347-5f91-470c-9ffe-5c8dca7be0ca
-range
-
-# ╔═╡ 9b35dcb2-584f-459f-8d84-a7c73eb6ea3f
-md"""
-Let's try it out:
+Based on the documentation, we see that it can produce an array of numbers, similarly to numpy's `arange` or `linspace` functions. Now, what if we wanted to extend this to work with "color inputs" (aka types) as well, while still using the same function name: `range`? This is known as [multiple dispatch](https://www.oxinabox.net/2020/02/09/whycompositionaljulia.html), and it has many deep, far-reaching, and emergent benefits. Let's try it out by using the `Colors.jl` package 🌈:
 """
 
 # ╔═╡ cfbd1f1e-af46-48a0-8a4b-25b7cd538a2e
@@ -721,6 +713,9 @@ md"""
 
 Finally, we don't need to choose between using one language over the other. With [PyCall.jl](https://github.com/JuliaPy/PyCall.jl#specifying-the-python-version), we can write Python code as-is:
 """
+
+# ╔═╡ 55b6933b-4a43-4cc0-82cb-f0ba0fcd848f
+Conda.add("numpy")
 
 # ╔═╡ 3fc8a3d3-a0c8-4fff-8bac-b2001f777d58
 begin
@@ -749,11 +744,13 @@ np.linspace(1, 10, 3)
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
+Conda = "8f4d0f93-b110-5947-807f-2305c1781a2d"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 
 [compat]
 Colors = "~0.12.8"
+Conda = "~1.5.2"
 PlutoUI = "~0.7.18"
 PyCall = "~1.92.5"
 """
@@ -1050,15 +1047,14 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─7ec3b70d-4f17-4534-bb10-98674b783239
 # ╟─c61ef8ae-a8ee-48fd-bd3b-8c21912b5c2b
 # ╠═7c66b494-b755-47b8-bdac-969d539a24e5
+# ╟─76593ae0-a878-43e2-b207-ac77641b2045
 # ╟─515ebad0-a335-4cb3-9ed8-37a2dc3c7042
 # ╠═ca980f8f-10f1-45b4-ad4a-2b445059591e
-# ╟─46a4f56a-7883-4305-af11-dfc6d29a0901
-# ╠═21958347-5f91-470c-9ffe-5c8dca7be0ca
-# ╟─9b35dcb2-584f-459f-8d84-a7c73eb6ea3f
 # ╠═cfbd1f1e-af46-48a0-8a4b-25b7cd538a2e
 # ╟─542052e5-2cf4-485a-b9fe-153a14a24cab
 # ╟─13e830da-f5c0-4746-ae26-c7ed5c1647fb
 # ╠═6e694ce6-a3ad-4947-869b-eba8e595ad63
+# ╠═55b6933b-4a43-4cc0-82cb-f0ba0fcd848f
 # ╠═3fc8a3d3-a0c8-4fff-8bac-b2001f777d58
 # ╟─11659079-6d41-499e-8e1c-900a353eedba
 # ╠═a6a38cc9-9bb0-4481-b566-2fe2cd356cde
