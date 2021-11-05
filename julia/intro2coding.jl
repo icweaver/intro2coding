@@ -38,7 +38,7 @@ $(TableOfContents())
 
 # ╔═╡ 1021e2b0-3d2e-11ec-2bec-9daa7040f116
 md"""
-## Coding for the First Time!
+## 1️⃣ Coding for the First Time!
 
 Sarah Blunt (2021)
 
@@ -72,7 +72,7 @@ end
 
 # ╔═╡ 400ca605-6e11-492d-ad5c-ffade9cf3941
 md"""
-## Comments
+## #️Comments
 
 In coding/programming, comments are lines starting with one or more special characters, and are not run. In Julia, these are `#` for single line comments or `#=` `=#` wrapped around multi-line comments, like an open and close parenthesis. In Python, the equivalents are `#` and `\"""`. The computer treats them as if they don't exist! 
 """
@@ -101,7 +101,7 @@ md"""
 
 # ╔═╡ 1a6c18a7-5863-4052-b823-ad26498dfa13
 md"""
-## Your First Line of Code!
+## 💻 Your First Line of Code!
 
 What do you think will happen when you run the following line of code?
 """
@@ -141,7 +141,7 @@ end
 
 # ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
 md"""
-## Variables
+## (x) Variables
 
 What's the difference between:
 
@@ -273,7 +273,7 @@ md"""
 
 # ╔═╡ 99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 md"""
-## Types
+## 💠 Types
 There are many different kinds of variables, which we call **types**. These physically live on your computer and are stored/interpreted in different ways (think 1s and 0s). Here are a few examples of some important types:
 
 
@@ -335,7 +335,7 @@ end
 
 # ╔═╡ d6d039cf-beea-49cf-83dd-96542e08ee4a
 md"""
-## Functions
+## f(x) Functions
 
 You've actually already encountered a fourth type: functions!
 """
@@ -465,7 +465,7 @@ end
 
 # ╔═╡ ea2203a9-922c-4183-a78d-540ee7a87467
 md"""
-## How Computers Read Code
+## 👓 How Computers Read Code
 
 At this point, you know enough code to start learning about how computers read it. This concept isn't generally taught in intro programming tutorials, but I think it's invalauble for debugging (finding errors), writing fast code, and a whole host of other things. Here is a nice overview of these concepts from the CrashCourse YouTube series:
 """
@@ -615,7 +615,7 @@ md"""
 
 # ╔═╡ 886b45e5-6d18-49bd-9765-e4d14e4eb9d4
 md"""
-## Conditionals and Loops
+## ➰ Conditionals and Loops
 
 Using a conditional tells your computer "do this ONLY IF this other thing is true". Let's take a look at how they work:
 """
@@ -703,7 +703,7 @@ end
 
 # ╔═╡ 908f0673-ee21-4771-b572-58c9bc9cfea2
 md"""
-## Imports
+## ⬇️ Imports
 
 The last thing I'd like to introduce is imports. Python's popularity is due (in no small part!) to its extensive collection of useful code written by people other than the primary developers. These collections of code are called "packages" or "libraries." You can use packages by importing them. Similarly, the Julia [ecosystem](https://julialang.org/community/#julia_github_orgs) of packages is very rich, actively developed, and [composable](https://youtu.be/kc9HwsxE1OY?t=162) (Physics example at 2:42).
 
@@ -789,6 +789,134 @@ np = pyimport("numpy")
 
 # ╔═╡ 0a846828-e9a7-4be5-b4ac-1001015d8cd9
 np.linspace(1, 10, 3)
+
+# ╔═╡ f05a11c6-af97-43e1-8db9-a9960d51508f
+md"""
+## 🔎 Mini-projects/Open-ended Exercises:
+
+Congratulations on completing this tutorial! It is my hope that you are now prepared to start writing your own code (with lots of help from Google along the way!). Here are a few suggested mini-projects that you can try. All of these will require getting outside help from the internet, so please Google around to your heart's content (i.e. don't assume everything you need will be in this notebook).
+
+!!! note
+	 For maximum control, feel free to download this notebook and delete/add cells as you see fit!
+"""
+
+# ╔═╡ 0fd7a535-ceac-4bba-8c31-beb5834d9fb7
+md"""
+### #1: What is string formatting?
+
+How is it different from using the `*` (`+` in Python) operator to combine strings? Code up a few examples:
+"""
+
+# ╔═╡ bd52d99f-2bd8-4b06-8095-41ea87ed9052
+md"""
+### #2: Plotting
+
+Make a plot using `Makie.jl`/`Plots.jl`/`UnicodePlots.jl`/etc. in Julia, or the `matplotlib` package in Python:
+"""
+
+# ╔═╡ f59181e1-90e5-4991-a7af-73c739f9b203
+md"""
+### #3: Learn to read a `.fits` file
+
+Read in and analyze this data format using `CCDReduction.jl`/`FITSIO.jl` in Julia, or the `astropy` package in Python:
+"""
+
+# ╔═╡ ad5bbc50-fe0d-4b9c-8d82-dbef9befdfaa
+md"""
+### #4: What are dictionaries (Python's name for hash tables)? 
+
+How do they work?
+"""
+
+# ╔═╡ 0b12696c-aab0-4234-b02a-da77e16b20af
+md"""
+### #5: What are lists?
+
+How do they work?
+"""
+
+# ╔═╡ 8031d533-dbd8-41bf-a03f-24a30da07d16
+md"""
+### #6: What's wrong with the following code?
+
+It's not working the way the examples say it should. Please fix it! :) Fun fact: this is an example of a "recursive" function, meaning that it calls itself! 
+
+!!! tip
+	Google "Fibonacci numbers" if you're not familar with them.
+"""
+
+# ╔═╡ 6d2d036e-8eae-498d-bf73-b54216b79083
+"""
+	get_ith_fibonnacci_number(i)
+
+Returns the "ith" [Fibonnacci number](https://en.wikipedia.org/wiki/Fibonacci_number)
+
+# Examples
+```julia-repl
+julia> get_ith_fibonnacci_number(0)
+0
+julia> get_ith_fibonnacci_number(1)
+1
+julia> get_ith_fibonnacci_number(2)
+1
+julia> get_ith_fibonnacci_number(8)
+21
+```
+"""
+function get_ith_fibonnacci_number(i)
+	if i == 0
+    	return 0
+	elseif i == 1
+    	return 0
+	else
+    	return get_ith_fibonnacci_number(i-1) + get_ith_fibonnacci_number(i-1)
+	end
+end; # The semi-colon hides output
+
+# ╔═╡ d92b9b3f-1108-4a4f-a0ea-8364d9564cab
+md"""
+!!! tip
+	This docstring should show up in the "Live docs" tab now!
+"""
+
+# ╔═╡ 95c97cd7-b355-489f-9670-8ecf6eb604e6
+md"""
+!!! warning "🐍"
+	```Python
+	def get_ith_fibonnacci_number(i):
+	  \"""
+	  This is a function that returns the "ith" Fibonnacci number.
+	
+	  Examples:
+	    get_ith_fibonnacci_number(0) -> 0
+	    get_ith_fibonnacci_number(1) -> 1
+	    get_ith_fibonnacci_number(2) -> 1
+	    get_ith_fibonnacci_number(8) -> 21
+	
+	  Args:
+	    i (int) the index of the number you want
+	
+	  Returns:
+	    float: the ith Fibonnacci number
+	  \"""
+	
+	  if i == 0:
+	      return 0
+	
+	  elif i == 1:
+	      return 0
+	
+	  else:
+	      return get_ith_fibonnacci_number(i-1) + get_ith_fibonnacci_number(i-1)
+
+	get_ith_fibonnacci_number(2)
+	```
+"""
+
+# ╔═╡ 96bc35c5-9b3f-4d24-8529-29d0922e208c
+# You can use this line to run the code. Feel free to change the input
+# as you test!
+get_ith_fibonnacci_number(2)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1115,5 +1243,16 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═a6a38cc9-9bb0-4481-b566-2fe2cd356cde
 # ╠═0a846828-e9a7-4be5-b4ac-1001015d8cd9
 # ╟─3535775c-2d63-4c92-8c22-8f47b9e2b294
+# ╟─f05a11c6-af97-43e1-8db9-a9960d51508f
+# ╟─0fd7a535-ceac-4bba-8c31-beb5834d9fb7
+# ╟─bd52d99f-2bd8-4b06-8095-41ea87ed9052
+# ╟─f59181e1-90e5-4991-a7af-73c739f9b203
+# ╟─ad5bbc50-fe0d-4b9c-8d82-dbef9befdfaa
+# ╟─0b12696c-aab0-4234-b02a-da77e16b20af
+# ╟─8031d533-dbd8-41bf-a03f-24a30da07d16
+# ╠═6d2d036e-8eae-498d-bf73-b54216b79083
+# ╟─d92b9b3f-1108-4a4f-a0ea-8364d9564cab
+# ╟─95c97cd7-b355-489f-9670-8ecf6eb604e6
+# ╠═96bc35c5-9b3f-4d24-8529-29d0922e208c
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
