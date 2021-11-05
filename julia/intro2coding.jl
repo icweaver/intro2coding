@@ -918,6 +918,25 @@ md"""
 # as you test!
 get_ith_fibonnacci_number(2)
 
+# ╔═╡ 7bab8f9c-bb93-43e6-b5f4-ce1711241d73
+html"""
+<style>
+launch_binder {
+	display: none;
+}
+body.disable_ui main {
+		max-width : 95%;
+	}
+@media screen and (min-width: 1081px) {
+	body.disable_ui main {
+		margin-left : 10px;
+		max-width : 72%;
+		align-self: flex-start;
+	}
+}
+</style>
+"""
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -1242,7 +1261,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─11659079-6d41-499e-8e1c-900a353eedba
 # ╠═a6a38cc9-9bb0-4481-b566-2fe2cd356cde
 # ╠═0a846828-e9a7-4be5-b4ac-1001015d8cd9
-# ╟─3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─f05a11c6-af97-43e1-8db9-a9960d51508f
 # ╟─0fd7a535-ceac-4bba-8c31-beb5834d9fb7
 # ╟─bd52d99f-2bd8-4b06-8095-41ea87ed9052
@@ -1254,5 +1272,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─d92b9b3f-1108-4a4f-a0ea-8364d9564cab
 # ╟─95c97cd7-b355-489f-9670-8ecf6eb604e6
 # ╠═96bc35c5-9b3f-4d24-8529-29d0922e208c
+# ╟─7bab8f9c-bb93-43e6-b5f4-ce1711241d73
+# ╟─3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
