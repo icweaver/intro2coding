@@ -467,7 +467,7 @@ end
 md"""
 ## How Computers Read Code
 
-At this point, you know enough code to start learning about how computers read code. This concept isn't generally taught in intro programming tutorials, but I think it's invalauble for debugging (finding errors), writing fast code, and a whole host of other things. Here is a nice overview of these concepts from the CrashCourse YouTube series:
+At this point, you know enough code to start learning about how computers read it. This concept isn't generally taught in intro programming tutorials, but I think it's invalauble for debugging (finding errors), writing fast code, and a whole host of other things. Here is a nice overview of these concepts from the CrashCourse YouTube series:
 """
 
 # ╔═╡ 91493fcc-4cb0-4532-ad57-c4e1dae4ddce
@@ -560,7 +560,8 @@ After parsing the first line, the environment looks like:
 
 # ╔═╡ cd8b6d99-8570-4c69-a8cc-59c9be07a3fa
 md"""
-Your answer here:
+🟢 Your thoughts here:
+
 
 """
 
@@ -571,7 +572,8 @@ After parsing the second & third lines, the environment looks like:
 
 # ╔═╡ 5dd05f46-d7ee-4a24-84b0-8fa1e0b168cb
 md"""
-Your answer here:
+🟢 Your thoughts here:
+
 
 """
 
@@ -582,13 +584,14 @@ After parsing the fourth line, the environment looks like:
 
 # ╔═╡ ff0b17c6-a91c-4640-9cdb-da69a351c9e3
 md"""
-Your answer here:
+🟢 Your thoughts here:
+
 
 """
 
 # ╔═╡ bc746e9f-02fa-42f2-8a0d-4243d3e63918
 md"""
-The second step, **compiling**, involves translating the parsed code into machine-readable code. In Python, this is a several step process involving translating to C, then compiling the C code into machine-readable code (think 1s and 0s). In Julia, the process is significantly streamlined, allowing for a [more direct route](https://docs.julialang.org/en/v1/manual/faq/#Why-don't-you-compile-Matlab/Python/R/%E2%80%A6-code-to-Julia?) from "human language" to optimized "machine language". In other words, Julia gives the compiler more chances to do what it does best!
+The second step, **compiling**, involves translating the parsed code into machine-readable code. In Python, this is a several step process involving translating to C, then compiling the C code into machine-readable code (think 1s and 0s again). In Julia, the process is significantly streamlined, allowing for a [more direct route](https://docs.julialang.org/en/v1/manual/faq/#Why-don't-you-compile-Matlab/Python/R/%E2%80%A6-code-to-Julia?) from "human language" to optimized "machine language". In other words, Julia gives the compiler more chances to do what it does best!
 
 The last step is actually running the machine-readable code and returning the answer to you! This is often called **execution**.
 
@@ -605,7 +608,8 @@ What does the environment from the second example look like after execution?
 
 # ╔═╡ 17dee10b-24c4-44ac-b8dc-f2689d38700c
 md"""
-Your answer here!
+🟢 Your thoughts here:
+
 
 """
 
@@ -618,9 +622,9 @@ Using a conditional tells your computer "do this ONLY IF this other thing is tru
 
 # ╔═╡ 7f577e74-0030-4e6d-ba1d-dc931bd2566a
 with_terminal() do
-	a = 1
+	a = 1 # One equals sign to define a variable
 	
-	if a == 1
+	if a == 1 # Two equals signs to check truth value
 		println("yay!")
 	else
 		println("noooo")
@@ -631,30 +635,37 @@ end
 md"""
 !!! warning "🐍"
 	```Python
-	a = 1      # one equals sign to define a variable
+	a = 1
 	
-	if a == 1: # two equals signs to check truth value
+	if a == 1:
 		print("yay!")
 	else:
 		print("noooo")
 	```
 """
 
-# ╔═╡ c36fc94b-5f6a-441c-8279-a290fe2a2d71
+# ╔═╡ 453d7a14-f85d-4a9a-a2a9-ec385be3a87e
 md"""
-Let's take a look at another important structure in pretty much every coding language I know of)-- the for loop.
+What's happening under the hood in the code above? This involves a new type-- `Bool` (short for Boolean, i.e. True or False). First, the code `a == 1` is translated to a Boolean value (in this case, True). The conditional `if` just means "execute this code is this next statement is True," so we enter the first `println` statement.
 
-Here's what a for loop looks like:
+Play around with the code above: 
+
+- What happens if you replace `a == 1` with True? 
+- What happens if you define `a = 2` instead of `a = 1`?
+
+Let's take a look at another important structure in pretty much every coding language I know of)-- the `for` loop.
+
+Here's what a `for` loop looks like:
 
 ```Julia
-for i in [0,1,2,3]
+for i in [0, 1, 2, 3]
 	println(i)
 end
 ```
 
 !!! warning "🐍"
 	```Python
-	for i in [0,1,2,3]:
+	for i in [0, 1, 2, 3]:
 		print(i)
 	```
 
@@ -684,13 +695,11 @@ for each person in the list `["Sarah", "Jason", "BJ"]` if the person's name has 
 """
 
 # ╔═╡ 6d8f33b7-dcba-42eb-8966-887a5fb3a535
-## your code here: ##
+with_terminal() do
+	## your code here: ##
 
-
-
-
-
-#####################
+	#####################
+end
 
 # ╔═╡ 908f0673-ee21-4771-b572-58c9bc9cfea2
 md"""
@@ -1084,7 +1093,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─886b45e5-6d18-49bd-9765-e4d14e4eb9d4
 # ╠═7f577e74-0030-4e6d-ba1d-dc931bd2566a
 # ╟─dcf61c03-7d33-413e-a994-59de55b79ca0
-# ╟─c36fc94b-5f6a-441c-8279-a290fe2a2d71
+# ╟─453d7a14-f85d-4a9a-a2a9-ec385be3a87e
 # ╟─85460bab-f096-45a5-a020-285fea1901b7
 # ╟─a2685d04-459b-4919-aa70-6e350e6a0571
 # ╠═6d8f33b7-dcba-42eb-8966-887a5fb3a535
