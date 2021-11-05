@@ -42,9 +42,9 @@ md"""
 
 Sarah Blunt (2021)
 
-This tutorial takes you through some foundational programming operations, from the perspective of a research astronomer. It aims to provide a bit of backround on how computers interpret code, while at the same time showing you what you need to type in order to make things work.
+This tutorial takes you through some foundational programming operations, from the perspective of a research astronomer 🌠. It aims to provide a bit of background on how computers interpret code, while at the same time showing you what you need to type in order to make things work.
 
-I absolutely encourage you to look up other intro programming tutorials on the internet (e.g. <https://www.learnpython.org/>)! There are some excellent free resources out there. For a more modern, STEM oriented programming language (which this notebook is based in), we recommend checking out [Julia](https://computationalthinking.mit.edu/Spring21/).
+I absolutely encourage you to look up other intro programming tutorials on the internet (e.g. <https://www.learnpython.org/>)! There are some excellent free resources out there. For a modern, STEM oriented programming language (which this notebook is based in!), check out [Julia](https://computationalthinking.mit.edu/Spring21/) ✨
 
 The main part of this lesson is designed to take 1 hour, and to be executed independently while an instructor walks around to answer questions and give hints.
 
@@ -58,14 +58,14 @@ By the end of this tutorial, you will be able to:
 Throughout this notebook, we will show Julia code, highlighted along with equivalent Python code:
 
 ```Julia
-function my_awesome_julia_function(x, y)
+function my_awesome_julia_function(x, y) # Julia
 	return x + y
 end
 ```
 
 !!! warning "🐍"
 	```Python
-	def my_awesome_python_function(x, y):
+	def my_awesome_python_function(x, y): # Python
 		return x + y
 	```
 """
@@ -142,9 +142,9 @@ with_terminal() do
 ####################
 end
 
-# ╔═╡ 96d58ab3-92a5-41e8-8bba-6f75e787558b
+# ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
 md"""
-## Types
+## Variables
 
 What's the difference between:
 
@@ -155,21 +155,128 @@ println("Hello my friend!")
 and
 
 ```Julia
-println(Hello World!)
+println(Hello!)
 ```
 
 What happens when you try running it?
+
 """
 
-# ╔═╡ f3fb2c66-9df2-4df4-8368-dcab98b470ad
-println(Hello World!)
+# ╔═╡ 5f81f3b8-729f-4b17-9a90-7ca4d28b73df
+println(Hi)
+
+# ╔═╡ a7fe5543-a2e9-49fe-b733-65209f6f0bd7
+md"""
+!!! warning "🐍"
+	```Python
+	print(Hi) # returns: NameError: name 'Hi' is not defined
+	```
+"""
+
+# ╔═╡ 3c1f53ed-baea-4efc-8108-928ce31ae041
+md"""
+We've encountered our first error 😱! These can be frustrating when you are starting out, but they are eventually very helpful. They tell you that **A)** something is wrong with your code, and **B)** give you clues as to where and why something went wrong.
+
+In this case, the error message is telling us that the variable `Hi` is not defined, i.e. `UndefVarError`. So it looks like we should define it!
+
+Let's take a look at how variables work (hint: it's similar to how they work in math!). In the code below, `foo`, `bar`, and `foobar` are all **variables**:
+
+```Julia
+foo = 1
+bar = 2
+
+foobar = 1 + 2
+
+println(foobar)
+println(typeof(foobar))
+
+foobar = "hello!"
+
+println(foobar)
+println(typeof(foobar))
+```
+
+!!! warning "🐍"
+	```Python
+	foo = 1
+	bar = 2
+	
+	foobar = 1 + 2
+	
+	print(foobar)
+	print(type(foobar))
+	
+	foobar = "hello!"
+	
+	print(foobar)
+	print(type(foobar))
+	```
+
+Before you run this cell, write down below what you expect it to print out:
+"""
+
+# ╔═╡ f60aa8a4-6dfd-40be-bf00-e1072689db40
+md"""
+🟢 Your thoughts here:
+
+
+"""
+
+# ╔═╡ 58673c8e-a333-4c96-928a-5305ffdce8c7
+md"""
+Run cell: $(@bind run_variables_cell CheckBox())
+"""
+
+# ╔═╡ 4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
+if run_variables_cell
+	with_terminal() do
+		foo = 1
+		bar = 2
+		
+		foobar = 1 + 2
+		
+		println(foobar)
+		println(typeof(foobar))
+		
+		foobar = "hello!"
+		
+		println(foobar)
+		println(typeof(foobar))
+	end
+end
+
+# ╔═╡ 15c35bcd-6995-4b61-84a0-a9763dd2d305
+md"""
+With this in mind, what could we add to:
+
+```Julia
+print(Hi)
+```
+
+to make it print the desired output: `"Hello my friend!"`
+"""
+
+# ╔═╡ 017298fe-3a8f-415d-b712-134397c08256
+with_terminal() do
+## your code here: ##
+	
+####################
+end
+
+# ╔═╡ c3aeacff-cf94-4422-be59-8de51d57f373
+md"""
+!!! hint "Possible solution"
+	
+	```Julia
+	Hi = "Hello my friend!"
+	println(Hi)
+	```
+"""
 
 # ╔═╡ 99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 md"""
-We've encountered our first error! These can be frustrating when you are starting out, but they are eventually very helpful. They tell you that A) something is wrong with your code, and B) give you clues as to where and why something went wrong.
-
-The reason we encountered this error is because the `print` function only operates on certain **types**.
-
+## Types
+There are many different kinds of variables, which we call **types**.
 Here are a few examples of some important types:
 
 
@@ -350,77 +457,6 @@ Your thoughts here:
 
 
 """
-
-# ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
-md"""
-## Variables
-
-In the code above, we also encountered variables for the first time.
-
-Let's take a look at how variables work (hint: it's similar to how they work in math!). In the code below, `foo`, `bar`, and `foobar` are all **variables**:
-
-```Julia
-foo = 1
-bar = 2
-
-foobar = 1 + 2
-
-println(foobar)
-println(typeof(foobar))
-
-foobar = "hello!"
-
-println(foobar)
-println(typeof(foobar))
-```
-
-!!! warning "🐍"
-	```Python
-	foo = 1
-	bar = 2
-	
-	foobar = 1 + 2
-	
-	print(foobar)
-	print(type(foobar))
-	
-	foobar = "hello!"
-	
-	print(foobar)
-	print(type(foobar))
-	```
-
-Before you run this cell, write down below what you expect it to print out:
-"""
-
-# ╔═╡ 3b245074-ffaf-49dd-a989-bbb2da2e3518
-md"""
-Your guess here:
-
-"""
-
-# ╔═╡ 58673c8e-a333-4c96-928a-5305ffdce8c7
-md"""
-Run cell: $(@bind run_variables_cell CheckBox())
-"""
-
-# ╔═╡ 4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
-if run_variables_cell
-	with_terminal() do
-		foo = 1
-		bar = 2
-		
-		foobar = 1 + 2
-		
-		println(foobar)
-		println(typeof(foobar))
-		
-		foobar = "hello!"
-		
-		println(foobar)
-		println(typeof(foobar))
-	end
-end
 
 # ╔═╡ ea2203a9-922c-4183-a78d-540ee7a87467
 md"""
@@ -989,8 +1025,16 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─0d4c809b-a39e-4353-9746-21ae9c78137b
 # ╟─24712474-2d6f-4854-a335-ab0a3719b750
 # ╠═8c5cf9ce-100a-4a80-aa82-91896960f480
-# ╟─96d58ab3-92a5-41e8-8bba-6f75e787558b
-# ╠═f3fb2c66-9df2-4df4-8368-dcab98b470ad
+# ╟─98944a79-cead-4110-9fb1-78600b47b2d6
+# ╠═5f81f3b8-729f-4b17-9a90-7ca4d28b73df
+# ╟─a7fe5543-a2e9-49fe-b733-65209f6f0bd7
+# ╟─3c1f53ed-baea-4efc-8108-928ce31ae041
+# ╠═f60aa8a4-6dfd-40be-bf00-e1072689db40
+# ╟─58673c8e-a333-4c96-928a-5305ffdce8c7
+# ╟─4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
+# ╟─15c35bcd-6995-4b61-84a0-a9763dd2d305
+# ╠═017298fe-3a8f-415d-b712-134397c08256
+# ╟─c3aeacff-cf94-4422-be59-8de51d57f373
 # ╟─99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 # ╠═fe340371-d8e2-4b1a-8b45-d1435cc98a62
 # ╟─2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
@@ -1017,10 +1061,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═69ba8980-e0bd-4d6b-b881-378bebcade04
 # ╟─59d0886f-b328-4081-abe0-503ac9d11266
 # ╠═5ae296b7-81f2-4328-94d7-576bcfb5a8a2
-# ╟─98944a79-cead-4110-9fb1-78600b47b2d6
-# ╠═3b245074-ffaf-49dd-a989-bbb2da2e3518
-# ╟─58673c8e-a333-4c96-928a-5305ffdce8c7
-# ╟─4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
 # ╟─ea2203a9-922c-4183-a78d-540ee7a87467
 # ╟─91493fcc-4cb0-4532-ad57-c4e1dae4ddce
 # ╟─beb7f1d0-b337-4137-a131-bd0e9c2c1200
