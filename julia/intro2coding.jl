@@ -705,7 +705,7 @@ end
 md"""
 ## Imports
 
-The last thing I'd like to introduce is imports. Python's popularity is due (in no small part!) to its extensive collection of useful code written by people other than the primary developers. These collections of code are called "packages" or "libraries." You can use packages by importing them. Similarly, the Julia [ecosystem](https://julialang.org/community/#julia_github_orgs) of packages is very rich, actively developed, and [composable](https://www.youtube.com/watch?v=kc9HwsxE1OY).
+The last thing I'd like to introduce is imports. Python's popularity is due (in no small part!) to its extensive collection of useful code written by people other than the primary developers. These collections of code are called "packages" or "libraries." You can use packages by importing them. Similarly, the Julia [ecosystem](https://julialang.org/community/#julia_github_orgs) of packages is very rich, actively developed, and [composable](https://youtu.be/kc9HwsxE1OY?t=162) (Physics example at 2:42).
 
 Let's look at an example in Python: 
 
@@ -746,7 +746,7 @@ md"""
 
 # ╔═╡ 515ebad0-a335-4cb3-9ed8-37a2dc3c7042
 md"""
-Based on the documentation, we see that it can produce an array of numbers, similarly to numpy's `arange` or `linspace` functions. Now, what if we wanted to extend this to work with "color inputs" (aka types) as well, while still using the same function name: `range`? This is known as [multiple dispatch](https://www.oxinabox.net/2020/02/09/whycompositionaljulia.html), and it has many deep, far-reaching, and emergent benefits. Let's try it out by using the `Colors.jl` package 🌈:
+Based on the documentation, we see that it can produce an array of numbers, similarly to numpy's `arange` or `linspace` functions. Now, what if we wanted to extend this to work with "color inputs" as well, while still using the same function name: `range`? This is known as [multiple dispatch](https://www.oxinabox.net/2020/02/09/whycompositionaljulia.html), and it has many deep, far-reaching, and emergent benefits. Let's try it out by using the `Colors.jl` package 🌈:
 """
 
 # ╔═╡ cfbd1f1e-af46-48a0-8a4b-25b7cd538a2e
@@ -759,9 +759,9 @@ Without needing to edit the source code of the "base" version of `range`, we wer
 
 # ╔═╡ 13e830da-f5c0-4746-ae26-c7ed5c1647fb
 md"""
-## Interoperability
+### Interoperability aside
 
-Finally, we don't need to choose between using one language over the other. With [PyCall.jl](https://github.com/JuliaPy/PyCall.jl#specifying-the-python-version), we can write Python code as-is:
+We also don't need to choose between using one language over the other. With [PyCall.jl](https://github.com/JuliaPy/PyCall.jl#specifying-the-python-version), we can write Python code as-is:
 """
 
 # ╔═╡ 55b6933b-4a43-4cc0-82cb-f0ba0fcd848f
