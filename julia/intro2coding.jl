@@ -698,6 +698,7 @@ for each person in the list `["Sarah", "Jason", "BJ"]` if the person's name has 
 with_terminal() do
 	## your code here: ##
 
+	
 	#####################
 end
 
@@ -805,6 +806,8 @@ md"""
 ### #1: What is string formatting?
 
 How is it different from using the `*` (`+` in Python) operator to combine strings? Code up a few examples:
+
+**Bonus**: How is this related to commutivity?
 """
 
 # ╔═╡ bd52d99f-2bd8-4b06-8095-41ea87ed9052
@@ -819,6 +822,10 @@ md"""
 ### #3: Learn to read a `.fits` file
 
 Read in and analyze this data format using `CCDReduction.jl`/`FITSIO.jl` in Julia, or the `astropy` package in Python:
+
+!!! tip
+
+	🔭 The ESA has a bunch of great astronomical objects that we can visualize on their website [here](https://esahubble.org/projects/fits_liberator/datasets_archives/).
 """
 
 # ╔═╡ ad5bbc50-fe0d-4b9c-8d82-dbef9befdfaa
