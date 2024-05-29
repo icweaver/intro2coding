@@ -144,20 +144,34 @@ cm"""
 println("First line"); print("Second line")
 
 # ╔═╡ 17d49c7c-eb65-498f-891f-71fcf5e64134
+md"""
+!!! tip "Python 🐍"
+
+	```python
+	print("First line"); print("Second line")
+	```
+
+	```python
+	First line
+	Second line
+	```
 """
-print("First line"); print("Second line")
-	# First line
-	# Second line
-""" |> pynote
 
 # ╔═╡ c7828d38-e50d-46d7-9d20-369ccdd4a9ee
 print("First line. "); print("Still first line")
 
 # ╔═╡ 0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
-"""
-print("First line. ", end=""); print("Still first line")
-	# First line. Still first line
-""" |> pynote
+md"""
+!!! tip "Python 🐍"
+
+	```python
+	print("First line. ", end=""); print("Still first line")
+	```
+
+	```
+	First line. Still first line
+	```
+""" 
 
 # ╔═╡ 0b705ce9-7100-40cf-b12d-689c6720be80
 md"""
