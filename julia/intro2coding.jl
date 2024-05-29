@@ -209,7 +209,7 @@ print(hello)
 md"""
 We've encountered our first error 😱! These can be frustrating when you are starting out, but they are eventually very helpful. They tell you that **A)** something is wrong with your code, and **B)** give you clues as to where and why something went wrong.
 
-In this case, the error message is telling us that the variable `Hi` is not defined, i.e. `UndefVarError`. So it looks like we should define it!
+In this case, the error message is telling us that the variable `hello` is not defined, i.e. `UndefVarError`. So it looks like we should define it!
 
 Let's take a look at how variables work (hint: it's similar to how they work in math!). In the code below, `foo`, `bar`, and `foobar` are all **variables**:
 
@@ -277,36 +277,33 @@ end
 
 # ╔═╡ 15c35bcd-6995-4b61-84a0-a9763dd2d305
 md"""
-With this in mind, what could we add to:
+With this in mind, how could we modify
 
 ```julia
-print(Hi)
+print(hello)
 ```
 
-to make it print the desired output: `"Hello my friend!"`
+so that it prints the desired output: `"hello"`
 """
 
 # ╔═╡ 017298fe-3a8f-415d-b712-134397c08256
-with_terminal() do
-## your code here: ##
 
-	
-####################
-end
 
 # ╔═╡ c3aeacff-cf94-4422-be59-8de51d57f373
 md"""
 !!! hint "Possible solution"
 	
 	```julia
-	foobar = "Hello my friend!"
-	println(Hi)
+	salutation = "hello"
+	println(salutation)
+
+	# hello
 	```
 """
 
 # ╔═╡ 99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 md"""
-## 💠 Types
+## Types
 There are many different kinds of variables, which we call **types**. These physically live on your computer and are stored/interpreted in different ways (think 1s and 0s). Here are a few examples of some important types:
 
 
@@ -1510,10 +1507,10 @@ version = "17.4.0+2"
 # ╠═f60aa8a4-6dfd-40be-bf00-e1072689db40
 # ╟─58673c8e-a333-4c96-928a-5305ffdce8c7
 # ╟─4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
-# ╠═15c35bcd-6995-4b61-84a0-a9763dd2d305
+# ╟─15c35bcd-6995-4b61-84a0-a9763dd2d305
 # ╠═017298fe-3a8f-415d-b712-134397c08256
-# ╠═c3aeacff-cf94-4422-be59-8de51d57f373
-# ╟─99738d51-2f8e-4e91-88bc-d3b8f5329dd4
+# ╟─c3aeacff-cf94-4422-be59-8de51d57f373
+# ╠═99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 # ╠═fe340371-d8e2-4b1a-8b45-d1435cc98a62
 # ╟─2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
 # ╟─e3655b35-4bb9-42ad-a1a8-23549efd519a
