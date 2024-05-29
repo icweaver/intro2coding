@@ -14,6 +14,9 @@ macro bind(def, element)
     end
 end
 
+# ╔═╡ 3b2b0c4a-83b0-41ea-9654-b6a11e22d0d2
+using ImageCore
+
 # ╔═╡ ca980f8f-10f1-45b4-ad4a-2b445059591e
 using Colors
 
@@ -21,7 +24,7 @@ using Colors
 using PythonCall, CondaPkg
 
 # ╔═╡ 3535775c-2d63-4c92-8c22-8f47b9e2b294
-using PlutoUI
+using PlutoUI, CommonMark
 
 # ╔═╡ 9c238f5b-3981-4aef-be52-b50e5b832b69
 md"""
@@ -39,7 +42,7 @@ By the end of this tutorial, you will be able to:
 * Identify objects of type `String`, `Float`, `Integer`, `Function`, and `Bool`, and know ways to check.
 * Explain the three main steps a computer executes while running code, and analyze the current state of the local environment after each line is parsed.
 
-Throughout this notebook, we will show Julia code, highlighted along with equivalent Python code:
+Throughout this notebook, we will show Julia code highlighted along with equivalent Python code:
 
 ```julia-repl
 julia> rand(1:10, 3, 4)
@@ -59,6 +62,25 @@ julia> rand(1:10, 3, 4)
 	```
 """
 
+# ╔═╡ 5cd392a4-5804-4748-9016-9b6baa73a85a
+cm"""
+With this requisite information out of the way, let's get started!
+"""
+
+# ╔═╡ ba40cbc9-363e-4dfe-98ac-28672e9864bf
+msg_adding_colors = md"""
+##### Adding colors in Julia 🎨
+This makes magenta!
+
+```julia
+using ImageCore
+
+RGB(1, 0, 0) + RGB(0, 0, 1)
+```
+
+$(RGB(1, 0, 0) + RGB(0, 0, 1))
+""";
+
 # ╔═╡ 400ca605-6e11-492d-ad5c-ffade9cf3941
 md"""
 ## Comments #️⃣
@@ -72,21 +94,13 @@ In coding/programming, comments are lines starting with one or more special char
 
 # ╔═╡ 2e063e4b-595a-4b54-84e8-9250d9d2b521
 md"""
-Why do you think we have comments, if they don't cause the computer to do anything?
-"""
+Why do you think we have comments if they do not cause the computer to do anything?
 
-# ╔═╡ 6f23536e-1dea-4367-92e7-cc424f6cc2d4
-md"""
 🟢 Your thoughts here:
-
-
 """
 
-# ╔═╡ 8806bdae-d1dd-416d-a03d-742793e464fd
-md"""
-!!! note
-	The cell above is a [Markdown](https://www.markdownguide.org/basic-syntax/) string. We will talk more about strings later in the notebook. After you are finished typing in your answer, you can view the resulting output by running the cell, and hide the source code by selecing the eye icon on the left.
-"""
+# ╔═╡ 3378e493-067c-4387-bf02-d645317c8f56
+
 
 # ╔═╡ 1a6c18a7-5863-4052-b823-ad26498dfa13
 md"""
@@ -116,6 +130,21 @@ Try printing out your own message below:
 
 # ╔═╡ 8c5cf9ce-100a-4a80-aa82-91896960f480
 
+
+# ╔═╡ 27bc4e6c-d34f-4fbf-bab0-38c56cf725ab
+cm"""
+!!! note "print vs. println"
+
+	This just comes down to how [newlines](https://en.wikipedia.org/wiki/Newline) are handled, in other words how blank lines are printed out. In Python, this is handled with a keyword argument. In Julia, it is its own function:
+
+	```julia
+	```
+
+	$(pynote(
+	print("First line. ", end=""); print("Still first line")
+	# First line. Still first line
+	))
+"""
 
 # ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
 md"""
@@ -310,8 +339,8 @@ with_terminal() do
 end
 
 # ╔═╡ d6d039cf-beea-49cf-83dd-96542e08ee4a
-md"""
-## f(x) Functions
+cm"""
+## Functions
 
 You've actually already encountered a fourth type: functions!
 """
@@ -326,6 +355,11 @@ md"""
 	import types
 	isinstance(print, types.BuiltinFunctionType)
 	```
+"""
+
+# ╔═╡ 68f9ae2c-fc84-4af8-b761-75e6bec42523
+md"""
+Test [link](#functions)
 """
 
 # ╔═╡ 000cbb49-8dbf-4f3b-bca4-9825890e442a
@@ -914,27 +948,74 @@ md"""
 Misc. configs and helper functions here. Note that cell order does not matter.
 """
 
+# ╔═╡ 5cde3b1e-4ec3-449b-a791-f9c975e30e36
+TableOfContents()
+
 # ╔═╡ 76be24f5-ad6d-4f77-8290-ff94c7271428
-pynote(s) = Markdown.parse("""
+pynote(s) = Markdown.parse(
+"""
 !!! tip "Python 🐍"
 
-	```python	
+	```python
 	$(s)
 	```
+"""
+)
+
+# ╔═╡ 0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
+pynote("""print("First line. ", end=""); print("Still first line")
+
+	# First line. Still first line
+""")
+
+# ╔═╡ fdf5ba27-46c7-4d6b-a523-bdb96719aa9f
+msg(x; title="Details") = details(title, x);
+
+# ╔═╡ 5834c659-011d-4a06-a72e-7d8f44a5e680
+details("Using this notebook", cm"""
+Some parts of this [Pluto notebook](https://plutojl.org/) are partially interactive online, but for full interactive control, it is recommended to download and run this notebook locally. For instructions on how to do this, click the `Edit or run this notebook` button in the top right corner of the page, or [click on this direct link](https://computationalthinking.mit.edu/Fall23/installation/) which includes a video and written instructions for getting started with Julia and Pluto 🌱.
+
+!!! note "First time running"
+	**Note**: This notebook will download all of the analysis packages and data needed for us, so the first time it runs may take a little while (~ a few minutes depending on your internet connection and platform). Clicking on the `Status` tab in the bottom right will bring up a progress window that we can use to monitor this process, and it also includes an option at the bottom marked `Notify when done` that can be selected to give us a notification pop-up in our browser when everything is finished.
+
+This is a fully hackable notebook, so exploring the [source code](https://github.com/icweaver/UCAN/blob/main/EBs/EB_lab.jl) and making your own modifications is encouraged! Unlike Jupyter notebooks, Pluto notebook are just plain Julia files. Any changes you make in the notebook are automatically saved to the source file.
+
+!!! note "Advanced: bring your own editor"
+	This works in the opposite direction too; any changes you make to the source file, say in your favorite editor, will automatically be reflected in the notebook in your browser! To enable this feature, just add this keyword to the function that was used to start Pluto:
+
+	```julia-repl
+	julia> using Pluto
+	
+	julia> Pluto.run(auto_reload_from_file=true)
+	
+	# This will be on by default in an upcoming release =]
+	```
+
+The location of the file for this notebook is displayed in the bar at the very top of this page, and can also be modified there if you want to change where this notebook lives.
+
+Periodically throughout the notebook we will include collapsible sections like the one below to provide additional information about items outside the scope of this lab that may be of interest (e.g., plotting, working with javascript, creating widgets).
+
+$(msg(msg_adding_colors))
+
+In the local version of this notebook, an "eye" icon will appear at the top left of each cell on hover to reveal the underlying code behind it and a `Live Docs` button will also be available in the bottom right of the page to pull up documentation for any function that is currently selected. In both local and online versions of this notebook, user defined functions and variables are also underlined, and (ctrl) clicking on them will jump to where they are defined.
 """)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
+CommonMark = "a80b9123-70ca-4bc0-993e-6e3bcb318db6"
 CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
+ImageCore = "a09fc81d-aa75-5fe9-8630-4744c3626534"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 
 [compat]
-Colors = "~0.12.8"
+Colors = "~0.12.11"
+CommonMark = "~0.8.12"
 CondaPkg = "~0.2.22"
-PlutoUI = "~0.7.18"
+ImageCore = "~0.10.2"
+PlutoUI = "~0.7.59"
 PythonCall = "~0.9.20"
 """
 
@@ -944,13 +1025,13 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.3"
 manifest_format = "2.0"
-project_hash = "82fe02d21a85da880686d515a1a123507dd81f14"
+project_hash = "d1a72a23fa33331ae64ee44fa94f30a366291be0"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
-git-tree-sha1 = "0ec322186e078db08ea3e7da5b8b2885c099b393"
+git-tree-sha1 = "6e1d2a35f2f90a4bc7c2ed98079b2ba09c35b83a"
 uuid = "6e696c72-6542-2067-7265-42206c756150"
-version = "1.1.0"
+version = "1.3.2"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -964,15 +1045,33 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[deps.ColorTypes]]
 deps = ["FixedPointNumbers", "Random"]
-git-tree-sha1 = "024fe24d83e4a5bf5fc80501a314ce0d1aa35597"
+git-tree-sha1 = "b10d0b65641d57b8b4d5e234446582de5047050d"
 uuid = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
-version = "0.11.0"
+version = "0.11.5"
+
+[[deps.ColorVectorSpace]]
+deps = ["ColorTypes", "FixedPointNumbers", "LinearAlgebra", "Requires", "Statistics", "TensorCore"]
+git-tree-sha1 = "a1f44953f2382ebb937d60dafbe2deea4bd23249"
+uuid = "c3611d14-8923-5661-9e6a-0046d554d3a4"
+version = "0.10.0"
+
+    [deps.ColorVectorSpace.extensions]
+    SpecialFunctionsExt = "SpecialFunctions"
+
+    [deps.ColorVectorSpace.weakdeps]
+    SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [[deps.Colors]]
 deps = ["ColorTypes", "FixedPointNumbers", "Reexport"]
-git-tree-sha1 = "417b0ed7b8b838aa6ca0a87aadf1bb9eb111ce40"
+git-tree-sha1 = "362a287c3aa50601b0bc359053d5c2468f0e7ce0"
 uuid = "5ae59095-9a9b-59fe-a467-6f913c188581"
-version = "0.12.8"
+version = "0.12.11"
+
+[[deps.CommonMark]]
+deps = ["Crayons", "JSON", "PrecompileTools", "URIs"]
+git-tree-sha1 = "532c4185d3c9037c0237546d817858b23cf9e071"
+uuid = "a80b9123-70ca-4bc0-993e-6e3bcb318db6"
+version = "0.8.12"
 
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -984,6 +1083,11 @@ deps = ["JSON3", "Markdown", "MicroMamba", "Pidfile", "Pkg", "Preferences", "TOM
 git-tree-sha1 = "e81c4263c7ef4eca4d645ef612814d72e9255b41"
 uuid = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
 version = "0.2.22"
+
+[[deps.Crayons]]
+git-tree-sha1 = "249fe38abf76d48563e2f4556bebd215aa317e15"
+uuid = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
+version = "4.1.1"
 
 [[deps.DataAPI]]
 git-tree-sha1 = "abe83f3a2f1b857aac70ef8b269080af17764bbe"
@@ -1009,26 +1113,33 @@ uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[deps.FixedPointNumbers]]
 deps = ["Statistics"]
-git-tree-sha1 = "335bfdceacc84c5cdf16aadc768aa5ddfc5383cc"
+git-tree-sha1 = "05882d6995ae5c12bb5f36dd2ed3f61c98cbb172"
 uuid = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
-version = "0.8.4"
+version = "0.8.5"
 
 [[deps.Hyperscript]]
 deps = ["Test"]
-git-tree-sha1 = "8d511d5b81240fc8e6802386302675bdf47737b9"
+git-tree-sha1 = "179267cfa5e712760cd43dcae385d7ea90cc25a4"
 uuid = "47d2ed2b-36de-50cf-bf87-49c2cf4b8b91"
-version = "0.0.4"
+version = "0.0.5"
 
 [[deps.HypertextLiteral]]
-git-tree-sha1 = "5efcf53d798efede8fee5b2c8b09284be359bf24"
+deps = ["Tricks"]
+git-tree-sha1 = "7134810b1afce04bbc1045ca1985fbe81ce17653"
 uuid = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
-version = "0.9.2"
+version = "0.9.5"
 
 [[deps.IOCapture]]
 deps = ["Logging", "Random"]
-git-tree-sha1 = "f7be53659ab06ddc986428d3a9dcc95f6fa6705a"
+git-tree-sha1 = "8b72179abc660bfab5e28472e019392b97d0985c"
 uuid = "b5f81e59-6552-4d32-b1f0-c071b021bf89"
-version = "0.2.2"
+version = "0.2.4"
+
+[[deps.ImageCore]]
+deps = ["ColorVectorSpace", "Colors", "FixedPointNumbers", "MappedArrays", "MosaicViews", "OffsetArrays", "PaddedViews", "PrecompileTools", "Reexport"]
+git-tree-sha1 = "b2a7eaa169c13f5bcae8131a83bc30eff8f71be0"
+uuid = "a09fc81d-aa75-5fe9-8630-4744c3626534"
+version = "0.10.2"
 
 [[deps.InteractiveUtils]]
 deps = ["Markdown"]
@@ -1047,9 +1158,9 @@ version = "1.5.0"
 
 [[deps.JSON]]
 deps = ["Dates", "Mmap", "Parsers", "Unicode"]
-git-tree-sha1 = "8076680b162ada2a031f707ac7b4953e30667a37"
+git-tree-sha1 = "31e996f0a15c7b280ba9f76636b3ff9e2ae58c9a"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
-version = "0.21.2"
+version = "0.21.4"
 
 [[deps.JSON3]]
 deps = ["Dates", "Mmap", "Parsers", "PrecompileTools", "StructTypes", "UUIDs"]
@@ -1101,11 +1212,21 @@ uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 [[deps.Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
+[[deps.MIMEs]]
+git-tree-sha1 = "65f28ad4b594aebe22157d6fac869786a255b7eb"
+uuid = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
+version = "0.1.4"
+
 [[deps.MacroTools]]
 deps = ["Markdown", "Random"]
 git-tree-sha1 = "2fa9ee3e63fd3a4f7a9a4f4744a52f4856de82df"
 uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 version = "0.5.13"
+
+[[deps.MappedArrays]]
+git-tree-sha1 = "2dab0221fe2b0f2cb6754eaa743cc266339f527e"
+uuid = "dbb5928d-eab1-5f90-85c2-b9b0edb7c900"
+version = "0.4.2"
 
 [[deps.Markdown]]
 deps = ["Base64"]
@@ -1125,6 +1246,12 @@ version = "0.1.14"
 [[deps.Mmap]]
 uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
+[[deps.MosaicViews]]
+deps = ["MappedArrays", "OffsetArrays", "PaddedViews", "StackViews"]
+git-tree-sha1 = "7b86a5d4d70a9f5cdf2dacb3cbe6d251d1a61dbe"
+uuid = "e94cdb99-869f-56ef-bcf0-1ae2bcbe0389"
+version = "0.3.4"
+
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
 version = "2023.1.10"
@@ -1132,6 +1259,17 @@ version = "2023.1.10"
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
 version = "1.2.0"
+
+[[deps.OffsetArrays]]
+git-tree-sha1 = "e64b4f5ea6b7389f6f046d13d4896a8f9c1ba71e"
+uuid = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
+version = "1.14.0"
+
+    [deps.OffsetArrays.extensions]
+    OffsetArraysAdaptExt = "Adapt"
+
+    [deps.OffsetArrays.weakdeps]
+    Adapt = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
 
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
@@ -1143,11 +1281,17 @@ git-tree-sha1 = "dfdf5519f235516220579f949664f1bf44e741c5"
 uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
 version = "1.6.3"
 
+[[deps.PaddedViews]]
+deps = ["OffsetArrays"]
+git-tree-sha1 = "0fac6313486baae819364c52b4f483450a9d793f"
+uuid = "5432bcbf-9aad-5242-b902-cca2824c8663"
+version = "0.5.12"
+
 [[deps.Parsers]]
-deps = ["Dates"]
-git-tree-sha1 = "ae4bbcadb2906ccc085cf52ac286dc1377dceccc"
+deps = ["Dates", "PrecompileTools", "UUIDs"]
+git-tree-sha1 = "8489905bcdbcfac64d1daa51ca07c0d8f0283821"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.1.2"
+version = "2.8.1"
 
 [[deps.Pidfile]]
 deps = ["FileWatching", "Test"]
@@ -1161,10 +1305,10 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 version = "1.10.0"
 
 [[deps.PlutoUI]]
-deps = ["AbstractPlutoDingetjes", "Base64", "Dates", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "UUIDs"]
-git-tree-sha1 = "57312c7ecad39566319ccf5aa717a20788eb8c1f"
+deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
+git-tree-sha1 = "ab55ee1510ad2af0ff674dbcced5e94921f867a9"
 uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-version = "0.7.18"
+version = "0.7.59"
 
 [[deps.PrecompileTools]]
 deps = ["Preferences"]
@@ -1228,6 +1372,12 @@ deps = ["Libdl", "LinearAlgebra", "Random", "Serialization", "SuiteSparse_jll"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 version = "1.10.0"
 
+[[deps.StackViews]]
+deps = ["OffsetArrays"]
+git-tree-sha1 = "46e589465204cd0c08b4bd97385e4fa79a0c770c"
+uuid = "cae243ae-269e-4f55-b966-ac2d0dc13c15"
+version = "0.1.1"
+
 [[deps.Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
 uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
@@ -1266,9 +1416,25 @@ deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
 version = "1.10.0"
 
+[[deps.TensorCore]]
+deps = ["LinearAlgebra"]
+git-tree-sha1 = "1feb45f88d133a655e001435632f019a9a1bcdb6"
+uuid = "62fd8b95-f654-4bbd-a8a5-9c27f68ccd50"
+version = "0.1.1"
+
 [[deps.Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[[deps.Tricks]]
+git-tree-sha1 = "eae1bb484cd63b36999ee58be2de6c178105112f"
+uuid = "410a4b4d-49e4-4fbc-ab6d-cb71b17b3775"
+version = "0.1.8"
+
+[[deps.URIs]]
+git-tree-sha1 = "67db6cc7b3821e19ebe75791a9dd19c9b1188f2b"
+uuid = "5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4"
+version = "1.5.1"
 
 [[deps.UUIDs]]
 deps = ["Random", "SHA"]
@@ -1311,16 +1477,21 @@ version = "17.4.0+2"
 
 # ╔═╡ Cell order:
 # ╟─9c238f5b-3981-4aef-be52-b50e5b832b69
+# ╟─5834c659-011d-4a06-a72e-7d8f44a5e680
+# ╟─5cd392a4-5804-4748-9016-9b6baa73a85a
+# ╟─ba40cbc9-363e-4dfe-98ac-28672e9864bf
+# ╟─3b2b0c4a-83b0-41ea-9654-b6a11e22d0d2
 # ╟─400ca605-6e11-492d-ad5c-ffade9cf3941
 # ╠═11e3ad1e-588c-4d37-aa49-2d6d996c2900
 # ╟─2e063e4b-595a-4b54-84e8-9250d9d2b521
-# ╠═6f23536e-1dea-4367-92e7-cc424f6cc2d4
-# ╟─8806bdae-d1dd-416d-a03d-742793e464fd
+# ╠═3378e493-067c-4387-bf02-d645317c8f56
 # ╟─1a6c18a7-5863-4052-b823-ad26498dfa13
 # ╠═5cb30b47-15ea-461c-b59d-900fda3651d0
-# ╠═9b57c6ec-56e5-4658-b5c5-72b4cff06be1
+# ╟─9b57c6ec-56e5-4658-b5c5-72b4cff06be1
 # ╟─24712474-2d6f-4854-a335-ab0a3719b750
 # ╠═8c5cf9ce-100a-4a80-aa82-91896960f480
+# ╠═27bc4e6c-d34f-4fbf-bab0-38c56cf725ab
+# ╠═0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
 # ╟─98944a79-cead-4110-9fb1-78600b47b2d6
 # ╟─a7fe5543-a2e9-49fe-b733-65209f6f0bd7
 # ╟─3c1f53ed-baea-4efc-8108-928ce31ae041
@@ -1336,9 +1507,10 @@ version = "17.4.0+2"
 # ╟─e3655b35-4bb9-42ad-a1a8-23549efd519a
 # ╠═69b69d34-f4e7-4c98-875d-7d80ed487c26
 # ╠═8f1cae48-bb0e-466c-94d7-b79a6e18b497
-# ╟─d6d039cf-beea-49cf-83dd-96542e08ee4a
+# ╠═d6d039cf-beea-49cf-83dd-96542e08ee4a
 # ╠═f0dc721a-45fa-45e1-a31d-6dac6ff96d99
 # ╟─bc6ec879-d744-4d04-ab47-a383b69404d1
+# ╠═68f9ae2c-fc84-4af8-b761-75e6bec42523
 # ╟─000cbb49-8dbf-4f3b-bca4-9825890e442a
 # ╠═1cfc3faf-81ed-40a8-bb42-d6dfc9f791a1
 # ╟─d3da42a6-1392-47dc-b470-be04ae82390f
@@ -1407,7 +1579,9 @@ version = "17.4.0+2"
 # ╟─95c97cd7-b355-489f-9670-8ecf6eb604e6
 # ╠═96bc35c5-9b3f-4d24-8529-29d0922e208c
 # ╟─3c6a773b-f3ad-42ec-bf81-808298b9199f
-# ╟─76be24f5-ad6d-4f77-8290-ff94c7271428
+# ╠═5cde3b1e-4ec3-449b-a791-f9c975e30e36
+# ╠═76be24f5-ad6d-4f77-8290-ff94c7271428
+# ╠═fdf5ba27-46c7-4d6b-a523-bdb96719aa9f
 # ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
