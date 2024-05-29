@@ -42,20 +42,21 @@ By the end of this tutorial, you will be able to:
 * Identify objects of type `String`, `Float`, `Integer`, `Function`, and `Bool`, and know ways to check.
 * Explain the three main steps a computer executes while running code, and analyze the current state of the local environment after each line is parsed.
 
-Throughout this notebook, we will show Julia code highlighted along with equivalent Python code:
+Throughout this notebook, we will show Julia code highlighted along with equivalent Python code. For example, here is one way we might generate a 3 x 4 matrix of random intergers from 1 to 10 (inclusive) in both languages:
+"""
 
-```julia-repl
-julia> rand(1:10, 3, 4)
-3×4 Matrix{Int64}:
-  1  7  8  2
-  4  7  6  9
- 10  6  5  8
-```
+# ╔═╡ 242303ed-bf92-4563-a5b9-3b4d4554dfdd
+rand(1:10, 3, 4)
 
+# ╔═╡ 0e347ed0-b0df-4b81-9565-1410a74543f7
+md"""
 !!! tip "Python 🐍"
 	```python
 	import numpy as np
 	np.random.randint(1, 11, size=(3, 4))
+	```
+
+	```python
 	array([[3, 1, 2, 6],
 	       [1, 3, 7, 3],
 	       [8, 1, 9, 9]])
@@ -135,21 +136,19 @@ Try printing out your own message below:
 cm"""
 !!! note "print vs. println"
 
-	This distinction just comes down to how [newlines](https://en.wikipedia.org/wiki/Newline) are handled; in other words how blank lines are printed out. In Python, this is handled with a [keyword argument](https://en.wikipedia.org/wiki/Named_parameter). In Julia, it is its own function:
-
-	```julia
-	```
-
-	$(yee)
-
-	We'll learn more about keyword arguments when we get to the [Functions](#functions) section.
+	This distinction just comes down to how [newlines](https://en.wikipedia.org/wiki/Newline) are handled; in other words how blank lines are printed out. In Python, this is handled with a [keyword argument](https://en.wikipedia.org/wiki/Named_parameter). In Julia, it is its own function.
 """
+
+# ╔═╡ 5d765ca0-83f6-4a8d-a551-b272f13b179f
+println("First line"); print("Second line")
 
 # ╔═╡ c7828d38-e50d-46d7-9d20-369ccdd4a9ee
 print("First line. "); print("Still first line")
 
-# ╔═╡ 5d765ca0-83f6-4a8d-a551-b272f13b179f
-println("First line"); print("Second line")
+# ╔═╡ 0b705ce9-7100-40cf-b12d-689c6720be80
+md"""
+We'll learn more about keyword arguments when we get to the [Functions](#functions) section.
+"""
 
 # ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
 cm"""
@@ -360,11 +359,6 @@ cm"""
 	import types
 	isinstance(print, types.BuiltinFunctionType)
 	```
-"""
-
-# ╔═╡ 68f9ae2c-fc84-4af8-b761-75e6bec42523
-cm"""
-Test [link](#functions)
 """
 
 # ╔═╡ 000cbb49-8dbf-4f3b-bca4-9825890e442a
@@ -957,18 +951,31 @@ Misc. configs and helper functions here. Note that cell order does not matter.
 TableOfContents()
 
 # ╔═╡ 76be24f5-ad6d-4f77-8290-ff94c7271428
-pynote(s) = cm"""
+pynote(input, output) = Markdown.parse("""
 !!! tip "Python 🐍"
 
+	[In]:
 	```python
-	$(s)
+	$(input)
 	```
+
+	[Out]:
+	```python
+	$(output)
+	```
+""")
+
+# ╔═╡ 17d49c7c-eb65-498f-891f-71fcf5e64134
 """
+print("First line"); print("Second line")
+	# First line
+	# Second line
+""" |> pynote
 
 # ╔═╡ 0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
 """
 print("First line. ", end=""); print("Still first line")
-# First line. Still first line
+	# First line. Still first line
 """ |> pynote
 
 # ╔═╡ fdf5ba27-46c7-4d6b-a523-bdb96719aa9f
@@ -1480,6 +1487,8 @@ version = "17.4.0+2"
 
 # ╔═╡ Cell order:
 # ╟─9c238f5b-3981-4aef-be52-b50e5b832b69
+# ╠═242303ed-bf92-4563-a5b9-3b4d4554dfdd
+# ╟─0e347ed0-b0df-4b81-9565-1410a74543f7
 # ╟─5834c659-011d-4a06-a72e-7d8f44a5e680
 # ╟─5cd392a4-5804-4748-9016-9b6baa73a85a
 # ╟─ba40cbc9-363e-4dfe-98ac-28672e9864bf
@@ -1493,10 +1502,12 @@ version = "17.4.0+2"
 # ╟─9b57c6ec-56e5-4658-b5c5-72b4cff06be1
 # ╟─24712474-2d6f-4854-a335-ab0a3719b750
 # ╠═8c5cf9ce-100a-4a80-aa82-91896960f480
-# ╠═27bc4e6c-d34f-4fbf-bab0-38c56cf725ab
-# ╠═c7828d38-e50d-46d7-9d20-369ccdd4a9ee
+# ╟─27bc4e6c-d34f-4fbf-bab0-38c56cf725ab
 # ╠═5d765ca0-83f6-4a8d-a551-b272f13b179f
-# ╠═0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
+# ╟─17d49c7c-eb65-498f-891f-71fcf5e64134
+# ╠═c7828d38-e50d-46d7-9d20-369ccdd4a9ee
+# ╟─0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
+# ╟─0b705ce9-7100-40cf-b12d-689c6720be80
 # ╟─98944a79-cead-4110-9fb1-78600b47b2d6
 # ╟─a7fe5543-a2e9-49fe-b733-65209f6f0bd7
 # ╟─3c1f53ed-baea-4efc-8108-928ce31ae041
@@ -1515,7 +1526,6 @@ version = "17.4.0+2"
 # ╠═d6d039cf-beea-49cf-83dd-96542e08ee4a
 # ╠═f0dc721a-45fa-45e1-a31d-6dac6ff96d99
 # ╟─bc6ec879-d744-4d04-ab47-a383b69404d1
-# ╠═68f9ae2c-fc84-4af8-b761-75e6bec42523
 # ╟─000cbb49-8dbf-4f3b-bca4-9825890e442a
 # ╠═1cfc3faf-81ed-40a8-bb42-d6dfc9f791a1
 # ╟─d3da42a6-1392-47dc-b470-be04ae82390f
