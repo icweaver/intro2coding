@@ -27,7 +27,7 @@ using PythonCall, CondaPkg
 using PlutoUI, CommonMark
 
 # ╔═╡ 9c238f5b-3981-4aef-be52-b50e5b832b69
-md"""
+cm"""
 # Intro to Coding 🌳
 This tutorial is adapted from the fantastic [Python course by Sara Blunt (2021)](https://colab.research.google.com/drive/1k7kQRZtGSX-s8OKXuwCvluNCO7iNvZnJ?usp=sharing) and will take you through some foundational programming operations, from the perspective of a research astronomer 🌠. It aims to provide a bit of background on how computers interpret code, while at the same time showing you what you need to type in order to make things work.
 
@@ -68,7 +68,7 @@ With this requisite information out of the way, let's get started!
 """
 
 # ╔═╡ ba40cbc9-363e-4dfe-98ac-28672e9864bf
-msg_adding_colors = md"""
+msg_adding_colors = cm"""
 ##### Adding colors in Julia 🎨
 This makes magenta!
 
@@ -82,7 +82,7 @@ $(RGB(1, 0, 0) + RGB(0, 0, 1))
 """;
 
 # ╔═╡ 400ca605-6e11-492d-ad5c-ffade9cf3941
-md"""
+cm"""
 ## Comments #️⃣
 
 In coding/programming, comments are lines starting with one or more special characters, and are not run. In Julia, these are `#` for single line comments or `#=` `=#` wrapped around multi-line comments, like an open and close parenthesis. In Python, the equivalents are `#` and `\"""`. The computer treats them as if they don't exist! 
@@ -93,7 +93,7 @@ In coding/programming, comments are lines starting with one or more special char
 # below this cell); nothing will be displayed.
 
 # ╔═╡ 2e063e4b-595a-4b54-84e8-9250d9d2b521
-md"""
+cm"""
 Why do you think we have comments if they do not cause the computer to do anything?
 
 🟢 Your thoughts here:
@@ -103,7 +103,7 @@ Why do you think we have comments if they do not cause the computer to do anythi
 
 
 # ╔═╡ 1a6c18a7-5863-4052-b823-ad26498dfa13
-md"""
+cm"""
 ## 💻 Your First Line of Code!
 
 What do you think will happen when you run the following line of code?
@@ -114,7 +114,7 @@ What do you think will happen when you run the following line of code?
 # println("Hello friend")
 
 # ╔═╡ 9b57c6ec-56e5-4658-b5c5-72b4cff06be1
-md"""
+cm"""
 !!! tip "Python 🐍"
 
 	```python
@@ -124,7 +124,7 @@ md"""
 """
 
 # ╔═╡ 24712474-2d6f-4854-a335-ab0a3719b750
-md"""
+cm"""
 Try printing out your own message below:
 """
 
@@ -135,19 +135,24 @@ Try printing out your own message below:
 cm"""
 !!! note "print vs. println"
 
-	This just comes down to how [newlines](https://en.wikipedia.org/wiki/Newline) are handled, in other words how blank lines are printed out. In Python, this is handled with a keyword argument. In Julia, it is its own function:
+	This distinction just comes down to how [newlines](https://en.wikipedia.org/wiki/Newline) are handled; in other words how blank lines are printed out. In Python, this is handled with a [keyword argument](https://en.wikipedia.org/wiki/Named_parameter). In Julia, it is its own function:
 
 	```julia
 	```
 
-	$(pynote(
-	print("First line. ", end=""); print("Still first line")
-	# First line. Still first line
-	))
+	$(yee)
+
+	We'll learn more about keyword arguments when we get to the [Functions](#functions) section.
 """
 
+# ╔═╡ c7828d38-e50d-46d7-9d20-369ccdd4a9ee
+print("First line. "); print("Still first line")
+
+# ╔═╡ 5d765ca0-83f6-4a8d-a551-b272f13b179f
+println("First line"); print("Second line")
+
 # ╔═╡ 98944a79-cead-4110-9fb1-78600b47b2d6
-md"""
+cm"""
 ## Variables (x)
 
 What's the difference between:
@@ -167,7 +172,7 @@ What happens when you try running it?
 """
 
 # ╔═╡ a7fe5543-a2e9-49fe-b733-65209f6f0bd7
-md"""
+cm"""
 !!! tip "Python 🐍"
 	```python
 	print(Hello)
@@ -176,7 +181,7 @@ md"""
 """
 
 # ╔═╡ 3c1f53ed-baea-4efc-8108-928ce31ae041
-md"""
+cm"""
 We've encountered our first error 😱! These can be frustrating when you are starting out, but they are eventually very helpful. They tell you that **A)** something is wrong with your code, and **B)** give you clues as to where and why something went wrong.
 
 In this case, the error message is telling us that the variable `Hi` is not defined, i.e. `UndefVarError`. So it looks like we should define it!
@@ -218,14 +223,14 @@ Before you run this cell, write down below what you expect it to print out:
 """
 
 # ╔═╡ f60aa8a4-6dfd-40be-bf00-e1072689db40
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
 """
 
 # ╔═╡ 58673c8e-a333-4c96-928a-5305ffdce8c7
-md"""
+cm"""
 Run cell: $(@bind run_variables_cell CheckBox())
 """
 
@@ -248,7 +253,7 @@ if run_variables_cell
 end
 
 # ╔═╡ 15c35bcd-6995-4b61-84a0-a9763dd2d305
-md"""
+cm"""
 With this in mind, what could we add to:
 
 ```Julia
@@ -267,7 +272,7 @@ with_terminal() do
 end
 
 # ╔═╡ c3aeacff-cf94-4422-be59-8de51d57f373
-md"""
+cm"""
 !!! hint "Possible solution"
 	
 	```Julia
@@ -277,7 +282,7 @@ md"""
 """
 
 # ╔═╡ 99738d51-2f8e-4e91-88bc-d3b8f5329dd4
-md"""
+cm"""
 ## 💠 Types
 There are many different kinds of variables, which we call **types**. These physically live on your computer and are stored/interpreted in different ways (think 1s and 0s). Here are a few examples of some important types:
 
@@ -306,7 +311,7 @@ with_terminal() do
 end
 
 # ╔═╡ 2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	print(type("hello"))
@@ -316,7 +321,7 @@ md"""
 """
 
 # ╔═╡ e3655b35-4bb9-42ad-a1a8-23549efd519a
-md"""
+cm"""
 What would you guess are the types of the following? Use the `typeof` function to check!
 
 ```Julia
@@ -327,7 +332,7 @@ What would you guess are the types of the following? Use the `typeof` function t
 """
 
 # ╔═╡ 69b69d34-f4e7-4c98-875d-7d80ed487c26
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
@@ -349,7 +354,7 @@ You've actually already encountered a fourth type: functions!
 println isa Function
 
 # ╔═╡ bc6ec879-d744-4d04-ab47-a383b69404d1
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	import types
@@ -358,12 +363,12 @@ md"""
 """
 
 # ╔═╡ 68f9ae2c-fc84-4af8-b761-75e6bec42523
-md"""
+cm"""
 Test [link](#functions)
 """
 
 # ╔═╡ 000cbb49-8dbf-4f3b-bca4-9825890e442a
-md"""
+cm"""
 Functions operate very similarly to how they do in math. Let's define our own function to see how they work:
 """
 
@@ -374,7 +379,7 @@ function my_function()
 end
 
 # ╔═╡ d3da42a6-1392-47dc-b470-be04ae82390f
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	def my_function():
@@ -389,12 +394,12 @@ with_terminal() do
 end
 
 # ╔═╡ 284b2544-9582-4adb-8bd7-186f55fce6f7
-md"""
+cm"""
 What do you think would happen if we didn't run the function (i.e. removed the line above?)
 """
 
 # ╔═╡ 181f6657-bea2-4907-9372-a821a79b9b6e
-md"""
+cm"""
 !!! tip
 	Another way to define functions in Julia is like this:
 	```Julia
@@ -403,7 +408,7 @@ md"""
 """
 
 # ╔═╡ ff6f9fed-0b2a-44be-abef-3e61f0764fb8
-md"""
+cm"""
 You can also write functions that use **arguments**. Here's an example:
 """
 
@@ -411,7 +416,7 @@ You can also write functions that use **arguments**. Here's an example:
 my_function_with_args(first_arg, second_arg) = println(first_arg * second_arg)
 
 # ╔═╡ eb3b0a5a-aa98-4a92-b0c4-bd2ba5a82f0c
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	def my_function_with_args(first_arg, second_arg):
@@ -420,7 +425,7 @@ md"""
 """
 
 # ╔═╡ 71ac570e-8dc5-4264-8a2a-3a213f81e962
-md"""
+cm"""
 Figure out how to run this function on two `Int`s. What do you think will happen if you try to run it on two `String`s?
 """
 
@@ -432,7 +437,7 @@ with_terminal() do
 end
 
 # ╔═╡ a4097197-b224-4002-8408-4374258a4a45
-md"""
+cm"""
 One last thing to know about functions: they can also `return` something. Here's an example:
 """
 
@@ -443,7 +448,7 @@ function my_returning_function(arg1, arg2)
 end
 
 # ╔═╡ b720baa8-143c-488f-b297-29ca987b3a51
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	def my_returning_function(arg1, arg2):
@@ -457,12 +462,12 @@ md"""
 foo = my_returning_function(1, 2)
 
 # ╔═╡ 59d0886f-b328-4081-abe0-503ac9d11266
-md"""
+cm"""
 If trying this in Python, why didn't running this cell do anything? How could you get Python to tell you what `foo` is (like Julia does by default)?
 """
 
 # ╔═╡ 5ae296b7-81f2-4328-94d7-576bcfb5a8a2
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
@@ -474,7 +479,7 @@ with_terminal() do
 end
 
 # ╔═╡ ea2203a9-922c-4183-a78d-540ee7a87467
-md"""
+cm"""
 ## 👓 How Computers Read Code
 
 At this point, you know enough code to start learning about how computers read it. This concept isn't generally taught in intro programming tutorials, but I think it's invalauble for debugging (finding errors), writing fast code, and a whole host of other things. Here is a nice overview of these concepts from the CrashCourse YouTube series:
@@ -486,7 +491,7 @@ html"""
 """
 
 # ╔═╡ beb7f1d0-b337-4137-a131-bd0e9c2c1200
-md"""
+cm"""
 To briefly summarize, there are three main steps in the process of a computer running some code: parsing, compiling, and executing.
 
 **Parsing** is the process of translating the code to units that the computer can understand. You can think of parsing as populating an "environment" (list) of currently defined variables and using this to translate later lines.
@@ -506,7 +511,7 @@ begin
 end
 
 # ╔═╡ 6c059624-7167-4721-b973-d3a34f035b32
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	var1 = "hello "
@@ -516,7 +521,7 @@ md"""
 """
 
 # ╔═╡ b43cde6e-dac3-4e8f-8e32-a43812ed2a5a
-md"""
+cm"""
 After parsing the first line, the environment looks like:
 
 ```
@@ -540,7 +545,7 @@ newvar -> output of function "*" acting on "hello " and "there!" (type String)
 """
 
 # ╔═╡ bf2fbeaf-23d8-48b7-bfbc-f257d8539412
-md"""
+cm"""
 **Example 2:**
 
 Try doing this yourself with the following code:
@@ -569,38 +574,38 @@ After parsing the first line, the environment looks like:
 """
 
 # ╔═╡ cd8b6d99-8570-4c69-a8cc-59c9be07a3fa
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
 """
 
 # ╔═╡ ca1a3229-5b89-4038-812f-d896f3affd0a
-md"""
+cm"""
 After parsing the second & third lines, the environment looks like:
 """
 
 # ╔═╡ 5dd05f46-d7ee-4a24-84b0-8fa1e0b168cb
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
 """
 
 # ╔═╡ ddb3498b-fd63-46d4-855f-ce13ba494811
-md"""
+cm"""
 After parsing the fourth line, the environment looks like:
 """
 
 # ╔═╡ ff0b17c6-a91c-4640-9cdb-da69a351c9e3
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
 """
 
 # ╔═╡ bc746e9f-02fa-42f2-8a0d-4243d3e63918
-md"""
+cm"""
 The second step, **compiling**, involves translating the parsed code into machine-readable code. In Python, this is a several step process involving translating to C, then compiling the C code into machine-readable code (think 1s and 0s again). In Julia, the process is significantly streamlined, allowing for a [more direct route](https://docs.julialang.org/en/v1/manual/faq/#Why-don't-you-compile-Matlab/Python/R/%E2%80%A6-code-to-Julia?) from "human language" to optimized "machine language". In other words, Julia gives the compiler more chances to do what it does best!
 
 The last step is actually running the machine-readable code and returning the answer to you! This is often called **execution**.
@@ -617,14 +622,14 @@ What does the environment from the second example look like after execution?
 """
 
 # ╔═╡ 17dee10b-24c4-44ac-b8dc-f2689d38700c
-md"""
+cm"""
 🟢 Your thoughts here:
 
 
 """
 
 # ╔═╡ 886b45e5-6d18-49bd-9765-e4d14e4eb9d4
-md"""
+cm"""
 ## ➰ Conditionals and Loops
 
 Using a conditional tells your computer "do this ONLY IF this other thing is true". Let's take a look at how they work:
@@ -642,7 +647,7 @@ with_terminal() do
 end
 
 # ╔═╡ dcf61c03-7d33-413e-a994-59de55b79ca0
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	a = 1
@@ -655,7 +660,7 @@ md"""
 """
 
 # ╔═╡ 453d7a14-f85d-4a9a-a2a9-ec385be3a87e
-md"""
+cm"""
 What's happening under the hood in the code above? This involves a new type-- `Bool` (short for Boolean, i.e. True or False). First, the code `a == 1` is translated to a Boolean value (in this case, True). The conditional `if` just means "execute this code is this next statement is True," so we enter the first `println` statement.
 
 Play around with the code above: 
@@ -694,7 +699,7 @@ if run_loop_cell
 end
 
 # ╔═╡ a2685d04-459b-4919-aa70-6e350e6a0571
-md"""
+cm"""
 **Exercise:** write some code that prints out:
 
 ```
@@ -713,7 +718,7 @@ with_terminal() do
 end
 
 # ╔═╡ 908f0673-ee21-4771-b572-58c9bc9cfea2
-md"""
+cm"""
 ## ⬇️ Imports
 
 The last thing I'd like to introduce is imports. Python's popularity is due (in no small part!) to its extensive collection of useful code written by people other than the primary developers. These collections of code are called "packages" or "libraries." You can use packages by importing them. Similarly, the Julia [ecosystem](https://julialang.org/community/#julia_github_orgs) of packages is very rich, actively developed, and [composable](https://youtu.be/kc9HwsxE1OY?t=162) (Physics example at 2:42).
@@ -736,13 +741,13 @@ Julia has the advantage of being built from the ground up with scientific comput
 collect(1:10)
 
 # ╔═╡ 7ec3b70d-4f17-4534-bb10-98674b783239
-md"""
+cm"""
 !!! note
 	As you may have noticed, Julia is also 1-based indexed. This seems to be a point of contention for a lot of people for some reason, but it [doesn't have to be](https://github.com/giordano/StarWarsArrays.jl). You can use whatever base makes you happy.
 """
 
 # ╔═╡ c61ef8ae-a8ee-48fd-bd3b-8c21912b5c2b
-md"""
+cm"""
 Importing packages also follow a similar syntax to Python. Unlike Python though, we can also import packages without needing to qualify them with a package name alias like `np`. For example, take the built-in function `range`:
 """
 
@@ -750,13 +755,13 @@ Importing packages also follow a similar syntax to Python. Unlike Python though,
 range
 
 # ╔═╡ 76593ae0-a878-43e2-b207-ac77641b2045
-md"""
+cm"""
 !!! tip
 	Select the "Live docs" tab after clicking on `range` to pull up its documentation
 """
 
 # ╔═╡ 515ebad0-a335-4cb3-9ed8-37a2dc3c7042
-md"""
+cm"""
 Based on the documentation, we see that it can produce an array of numbers, similarly to numpy's `arange` or `linspace` functions. Now, what if we wanted to extend this to work with "color inputs" as well, while still using the same function name: `range`? This is known as [multiple dispatch](https://www.oxinabox.net/2020/02/09/whycompositionaljulia.html), and it has many deep, far-reaching, and emergent benefits. Let's try it out by using the `Colors.jl` package 🌈:
 """
 
@@ -764,12 +769,12 @@ Based on the documentation, we see that it can produce an array of numbers, simi
 range(colorant"blue", colorant"red")
 
 # ╔═╡ 542052e5-2cf4-485a-b9fe-153a14a24cab
-md"""
+cm"""
 Without needing to edit the source code of the "base" version of `range`, we were able to seamlessly extend its functionality by `using` a separate package, which was also automatically downloaded and installed for us thanks to the nice people behind `Pluto.jl` 🍉
 """
 
 # ╔═╡ 13e830da-f5c0-4746-ae26-c7ed5c1647fb
-md"""
+cm"""
 ### Interoperability aside
 
 We also don't need to choose between using one language over the other. With [PyCall.jl](https://github.com/JuliaPy/PyCall.jl#specifying-the-python-version), we can write Python code as-is:
@@ -791,7 +796,7 @@ begin
 end
 
 # ╔═╡ 11659079-6d41-499e-8e1c-900a353eedba
-md"""
+cm"""
 and can even work with modules directly:
 """
 
@@ -802,7 +807,7 @@ np = pyimport("numpy")
 np.linspace(1, 10, 3)
 
 # ╔═╡ f05a11c6-af97-43e1-8db9-a9960d51508f
-md"""
+cm"""
 ## 🔎 Mini-projects/Open-ended Exercises:
 
 Congratulations on completing this tutorial! It is my hope that you are now prepared to start writing your own code (with lots of help from Google along the way!). Here are a few suggested mini-projects that you can try. All of these will require getting outside help from the internet, so please Google around to your heart's content (i.e. don't assume everything you need will be in this notebook).
@@ -812,7 +817,7 @@ Congratulations on completing this tutorial! It is my hope that you are now prep
 """
 
 # ╔═╡ 0fd7a535-ceac-4bba-8c31-beb5834d9fb7
-md"""
+cm"""
 ### #1: What is string formatting?
 
 How is it different from using the `*` (`+` in Python) operator to combine strings? Code up a few examples:
@@ -821,14 +826,14 @@ How is it different from using the `*` (`+` in Python) operator to combine strin
 """
 
 # ╔═╡ bd52d99f-2bd8-4b06-8095-41ea87ed9052
-md"""
+cm"""
 ### #2: Plotting
 
 Make a plot using `Makie.jl`/`Plots.jl`/`UnicodePlots.jl`/etc. in Julia, or the `matplotlib` package in Python:
 """
 
 # ╔═╡ f59181e1-90e5-4991-a7af-73c739f9b203
-md"""
+cm"""
 ### #3: Learn to read a `.fits` file
 
 Read in and analyze this data format using `CCDReduction.jl`/`FITSIO.jl` in Julia, or the `astropy` package in Python:
@@ -839,21 +844,21 @@ Read in and analyze this data format using `CCDReduction.jl`/`FITSIO.jl` in Juli
 """
 
 # ╔═╡ ad5bbc50-fe0d-4b9c-8d82-dbef9befdfaa
-md"""
+cm"""
 ### #4: What are dictionaries (Python's name for hash tables)? 
 
 How do they work?
 """
 
 # ╔═╡ 0b12696c-aab0-4234-b02a-da77e16b20af
-md"""
+cm"""
 ### #5: What are lists?
 
 How do they work?
 """
 
 # ╔═╡ 8031d533-dbd8-41bf-a03f-24a30da07d16
-md"""
+cm"""
 ### #6: What's wrong with the following code?
 
 It's not working the way the examples say it should. Please fix it! :) Fun fact: this is an example of a "recursive" function, meaning that it calls itself! 
@@ -895,13 +900,13 @@ end; # The semi-colon hides output
   ╠═╡ =#
 
 # ╔═╡ d92b9b3f-1108-4a4f-a0ea-8364d9564cab
-md"""
+cm"""
 !!! tip
 	This docstring should show up in the "Live docs" tab now!
 """
 
 # ╔═╡ 95c97cd7-b355-489f-9670-8ecf6eb604e6
-md"""
+cm"""
 !!! warning "🐍"
 	```python
 	def get_ith_fibonnacci_number(i):
@@ -942,7 +947,7 @@ get_ith_fibonnacci_number(2)
   ╠═╡ =#
 
 # ╔═╡ 3c6a773b-f3ad-42ec-bf81-808298b9199f
-md"""
+cm"""
 ## Notebook setup 🔧
 
 Misc. configs and helper functions here. Note that cell order does not matter.
@@ -952,21 +957,19 @@ Misc. configs and helper functions here. Note that cell order does not matter.
 TableOfContents()
 
 # ╔═╡ 76be24f5-ad6d-4f77-8290-ff94c7271428
-pynote(s) = Markdown.parse(
-"""
+pynote(s) = cm"""
 !!! tip "Python 🐍"
 
 	```python
 	$(s)
 	```
 """
-)
 
 # ╔═╡ 0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
-pynote("""print("First line. ", end=""); print("Still first line")
-
-	# First line. Still first line
-""")
+"""
+print("First line. ", end=""); print("Still first line")
+# First line. Still first line
+""" |> pynote
 
 # ╔═╡ fdf5ba27-46c7-4d6b-a523-bdb96719aa9f
 msg(x; title="Details") = details(title, x);
@@ -1491,6 +1494,8 @@ version = "17.4.0+2"
 # ╟─24712474-2d6f-4854-a335-ab0a3719b750
 # ╠═8c5cf9ce-100a-4a80-aa82-91896960f480
 # ╠═27bc4e6c-d34f-4fbf-bab0-38c56cf725ab
+# ╠═c7828d38-e50d-46d7-9d20-369ccdd4a9ee
+# ╠═5d765ca0-83f6-4a8d-a551-b272f13b179f
 # ╠═0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
 # ╟─98944a79-cead-4110-9fb1-78600b47b2d6
 # ╟─a7fe5543-a2e9-49fe-b733-65209f6f0bd7
