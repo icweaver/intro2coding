@@ -259,7 +259,7 @@ Run cell: $(@bind run_variables_cell CheckBox())
 
 # ╔═╡ 4397fe2c-04aa-4bec-bf4e-cbcdee0baed2
 if run_variables_cell
-	with_terminal() do
+	let
 		foo = 1
 		bar = 2
 		
@@ -313,18 +313,18 @@ There are many different kinds of variables, which we call **types**. These phys
 13.4    # type "Float64"
 ```
 
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	"hello" # type "str" (short for "string")
 	13      # type "int" (short for "integer")
 	13.4    # type "float"
 	```
 
-You can use the `typeof` function (`type` in Python) to figure out the types of each of these:
+We can use the `typeof` function (`type` in Python) to display the types of each of these:
 """
 
 # ╔═╡ fe340371-d8e2-4b1a-8b45-d1435cc98a62
-with_terminal() do
+begin
 	println(typeof("hello"))
 	println(typeof(13))
 	println(typeof(13.4))
@@ -332,7 +332,7 @@ end
 
 # ╔═╡ 2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	print(type("hello"))
 	print(type(13))
@@ -375,7 +375,7 @@ println isa Function
 
 # ╔═╡ bc6ec879-d744-4d04-ab47-a383b69404d1
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	import types
 	isinstance(print, types.BuiltinFunctionType)
@@ -395,7 +395,7 @@ end
 
 # ╔═╡ d3da42a6-1392-47dc-b470-be04ae82390f
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	def my_function():
 		print("hello!")
@@ -404,9 +404,7 @@ md"""
 
 # ╔═╡ 84224027-e070-4c9d-8a61-87d2f37c215e
 # This runs the function
-with_terminal() do
-	my_function()
-end
+my_function()
 
 # ╔═╡ 284b2544-9582-4adb-8bd7-186f55fce6f7
 md"""
@@ -432,7 +430,7 @@ my_function_with_args(first_arg, second_arg) = println(first_arg * second_arg)
 
 # ╔═╡ eb3b0a5a-aa98-4a92-b0c4-bd2ba5a82f0c
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	def my_function_with_args(first_arg, second_arg):
 		print(first_arg + second_arg)
@@ -464,7 +462,7 @@ end
 
 # ╔═╡ b720baa8-143c-488f-b297-29ca987b3a51
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	def my_returning_function(arg1, arg2):
 		intermediate_variable = arg1 + arg2
@@ -527,7 +525,7 @@ end
 
 # ╔═╡ 6c059624-7167-4721-b973-d3a34f035b32
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	var1 = "hello "
 	var2 = "there!"
@@ -575,7 +573,7 @@ end
 anothervar = my_new_function()
 ```
 
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	myvar = 3.5
 	
@@ -663,7 +661,7 @@ end
 
 # ╔═╡ dcf61c03-7d33-413e-a994-59de55b79ca0
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	a = 1
 	
@@ -693,7 +691,7 @@ for i in [0, 1, 2, 3]
 end
 ```
 
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	for i in [0, 1, 2, 3]:
 		print(i)
@@ -740,7 +738,7 @@ The last thing I'd like to introduce is imports. Python's popularity is due (in 
 
 Let's look at an example in Python: 
 
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
 	import numpy as np
 	
@@ -792,34 +790,18 @@ Without needing to edit the source code of the "base" version of `range`, we wer
 md"""
 ### Interoperability aside
 
-We also don't need to choose between using one language over the other. With [PyCall.jl](https://github.com/JuliaPy/PyCall.jl#specifying-the-python-version), we can write Python code as-is:
+We also don't need to choose between using one language over the other. With [PythonCall.jl](https://github.com/JuliaPy/PythonCall.jl), we can write Python code as-is:
 """
 
 # ╔═╡ 55b6933b-4a43-4cc0-82cb-f0ba0fcd848f
-Conda.add("numpy")
+CondaPkg.add("numpy")
 
 # ╔═╡ 3fc8a3d3-a0c8-4fff-8bac-b2001f777d58
-begin
-	py"""
-	import numpy as np
-	
-	def make_range(x):
-		return np.arange(x)
-	"""
-	
-	py"make_range"(5)
-end
-
-# ╔═╡ 11659079-6d41-499e-8e1c-900a353eedba
-md"""
-and can even work with modules directly:
-"""
-
-# ╔═╡ a6a38cc9-9bb0-4481-b566-2fe2cd356cde
-np = pyimport("numpy")
+@py import numpy as np
 
 # ╔═╡ 0a846828-e9a7-4be5-b4ac-1001015d8cd9
-np.linspace(1, 10, 3)
+# Generate six numbers equally spaced between 1 and 10 (inclusive)
+np.linspace(1, 10, 6)
 
 # ╔═╡ f05a11c6-af97-43e1-8db9-a9960d51508f
 md"""
@@ -851,7 +833,7 @@ Make a plot using `Makie.jl`/`Plots.jl`/`UnicodePlots.jl`/etc. in Julia, or the 
 md"""
 ### #3: Learn to read a `.fits` file
 
-Read in and analyze this data format using `CCDReduction.jl`/`FITSIO.jl` in Julia, or the `astropy` package in Python:
+Read in and analyze this data format using [AstroImages.jl](https://juliaastro.org/dev/modules/AstroImages/) in Julia, or the [astropy](https://www.astropy.org/) package in Python:
 
 !!! tip
 
@@ -878,61 +860,57 @@ md"""
 
 It's not working the way the examples say it should. Please fix it! :) Fun fact: this is an example of a "recursive" function, meaning that it calls itself! 
 
-!!! tip
-	Google "Fibonacci numbers" if you're not familar with them.
+!!! note
+	Search for "Fibonacci numbers" if you are not familar with them.
 """
 
 # ╔═╡ 6d2d036e-8eae-498d-bf73-b54216b79083
-# ╠═╡ disabled = true
-# ╠═╡ skip_as_script = true
-#=╠═╡
 """
-	get_ith_fibonnacci_number(i)
+	get_ith_fibonacci_number(i)
 
-Returns the "ith" [Fibonnacci number](https://en.wikipedia.org/wiki/Fibonacci_number)
+Returns the "ith" [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number)
 
 # Examples
 ```julia-repl
-julia> get_ith_fibonnacci_number(0)
+julia> get_ith_fibonacci_number(0)
 0
-julia> get_ith_fibonnacci_number(1)
+julia> get_ith_fibonacci_number(1)
 1
-julia> get_ith_fibonnacci_number(2)
+julia> get_ith_fibonacci_number(2)
 1
-julia> get_ith_fibonnacci_number(8)
+julia> get_ith_fibonacci_number(8)
 21
 ```
 """
-function get_ith_fibonnacci_number(i)
+function get_ith_fibonacci_number(i)
 	if i == 0
     	return 0
 	elseif i == 1
     	return 0
 	else
-    	return get_ith_fibonnacci_number(i-1) + get_ith_fibonnacci_number(i-1)
+    	return get_ith_fibonacci_number(i-1) + get_ith_fibonacci_number(i-1)
 	end
-end; # The semi-colon hides output
-  ╠═╡ =#
+end
 
 # ╔═╡ d92b9b3f-1108-4a4f-a0ea-8364d9564cab
 md"""
-!!! tip
+!!! note
 	This docstring should show up in the "Live docs" tab now!
 """
 
 # ╔═╡ 95c97cd7-b355-489f-9670-8ecf6eb604e6
 md"""
-!!! warning "🐍"
+!!!  tip "Python 🐍"
 	```python
-	def get_ith_fibonnacci_number(i):
+	def get_ith_fibonacci_number(i):
 	  \"""
 	  This is a function that returns the "ith" Fibonnacci number.
 	
 	  Examples:
-	    get_ith_fibonnacci_number(0) -> 0
-	    get_ith_fibonnacci_number(1) -> 1
-	    get_ith_fibonnacci_number(2) -> 1
-	    get_ith_fibonnacci_number(8) -> 21
+	    get_ith_fibonacci_number(0) -> 0
+	    get_ith_fibonacci_number(1) -> 1
+	    get_ith_fibonacci_number(2) -> 1
+	    get_ith_fibonacci_number(8) -> 21
 	
 	  Args:
 	    i (int) the index of the number you want
@@ -948,18 +926,14 @@ md"""
 	      return 0
 	
 	  else:
-	      return get_ith_fibonnacci_number(i-1) + get_ith_fibonnacci_number(i-1)
-
-	get_ith_fibonnacci_number(2)
+	      return get_ith_fibonacci_number(i-1) + get_ith_fibonacci_number(i-1)
 	```
 """
 
 # ╔═╡ 96bc35c5-9b3f-4d24-8529-29d0922e208c
-#=╠═╡
 # You can use this line to run the code. Feel free to change the input
 # as you test!
-get_ith_fibonnacci_number(2)
-  ╠═╡ =#
+get_ith_fibonacci_number(8)
 
 # ╔═╡ 3c6a773b-f3ad-42ec-bf81-808298b9199f
 md"""
@@ -1510,7 +1484,7 @@ version = "17.4.0+2"
 # ╟─15c35bcd-6995-4b61-84a0-a9763dd2d305
 # ╠═017298fe-3a8f-415d-b712-134397c08256
 # ╟─c3aeacff-cf94-4422-be59-8de51d57f373
-# ╠═99738d51-2f8e-4e91-88bc-d3b8f5329dd4
+# ╟─99738d51-2f8e-4e91-88bc-d3b8f5329dd4
 # ╠═fe340371-d8e2-4b1a-8b45-d1435cc98a62
 # ╟─2e646d7c-9be2-40b2-b07d-bb9214a3c8c1
 # ╟─e3655b35-4bb9-42ad-a1a8-23549efd519a
@@ -1572,8 +1546,6 @@ version = "17.4.0+2"
 # ╠═6e694ce6-a3ad-4947-869b-eba8e595ad63
 # ╠═55b6933b-4a43-4cc0-82cb-f0ba0fcd848f
 # ╠═3fc8a3d3-a0c8-4fff-8bac-b2001f777d58
-# ╟─11659079-6d41-499e-8e1c-900a353eedba
-# ╠═a6a38cc9-9bb0-4481-b566-2fe2cd356cde
 # ╠═0a846828-e9a7-4be5-b4ac-1001015d8cd9
 # ╟─f05a11c6-af97-43e1-8db9-a9960d51508f
 # ╟─0fd7a535-ceac-4bba-8c31-beb5834d9fb7
