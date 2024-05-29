@@ -42,7 +42,7 @@ By the end of this tutorial, you will be able to:
 * Identify objects of type `String`, `Float`, `Integer`, `Function`, and `Bool`, and know ways to check.
 * Explain the three main steps a computer executes while running code, and analyze the current state of the local environment after each line is parsed.
 
-Throughout this notebook, we will show Julia code highlighted along with equivalent Python code. For example, here is one way we might generate a 3 x 4 matrix of random intergers from 1 to 10 (inclusive) in both languages:
+Throughout this notebook, we will show Julia code highlighted along with equivalent Python code. For example, here is one way we might generate a 3 x 4 matrix of random integers from 1 to 10 (inclusive) in both languages:
 """
 
 # ╔═╡ 242303ed-bf92-4563-a5b9-3b4d4554dfdd
@@ -51,6 +51,7 @@ rand(1:10, 3, 4)
 # ╔═╡ 0e347ed0-b0df-4b81-9565-1410a74543f7
 md"""
 !!! tip "Python 🐍"
+	
 	```python
 	import numpy as np
 	np.random.randint(1, 11, size=(3, 4))
@@ -69,7 +70,7 @@ With this requisite information out of the way, let's get started!
 """
 
 # ╔═╡ ba40cbc9-363e-4dfe-98ac-28672e9864bf
-msg_adding_colors = cm"""
+msg_adding_colors = md"""
 ##### Adding colors in Julia 🎨
 This makes magenta!
 
@@ -142,8 +143,21 @@ cm"""
 # ╔═╡ 5d765ca0-83f6-4a8d-a551-b272f13b179f
 println("First line"); print("Second line")
 
+# ╔═╡ 17d49c7c-eb65-498f-891f-71fcf5e64134
+"""
+print("First line"); print("Second line")
+	# First line
+	# Second line
+""" |> pynote
+
 # ╔═╡ c7828d38-e50d-46d7-9d20-369ccdd4a9ee
 print("First line. "); print("Still first line")
+
+# ╔═╡ 0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
+"""
+print("First line. ", end=""); print("Still first line")
+	# First line. Still first line
+""" |> pynote
 
 # ╔═╡ 0b705ce9-7100-40cf-b12d-689c6720be80
 md"""
@@ -950,34 +964,6 @@ Misc. configs and helper functions here. Note that cell order does not matter.
 # ╔═╡ 5cde3b1e-4ec3-449b-a791-f9c975e30e36
 TableOfContents()
 
-# ╔═╡ 76be24f5-ad6d-4f77-8290-ff94c7271428
-pynote(input, output) = Markdown.parse("""
-!!! tip "Python 🐍"
-
-	[In]:
-	```python
-	$(input)
-	```
-
-	[Out]:
-	```python
-	$(output)
-	```
-""")
-
-# ╔═╡ 17d49c7c-eb65-498f-891f-71fcf5e64134
-"""
-print("First line"); print("Second line")
-	# First line
-	# Second line
-""" |> pynote
-
-# ╔═╡ 0617b99b-f93e-4ef5-bc42-b5b48d7bf2ce
-"""
-print("First line. ", end=""); print("Still first line")
-	# First line. Still first line
-""" |> pynote
-
 # ╔═╡ fdf5ba27-46c7-4d6b-a523-bdb96719aa9f
 msg(x; title="Details") = details(title, x);
 
@@ -1595,7 +1581,6 @@ version = "17.4.0+2"
 # ╠═96bc35c5-9b3f-4d24-8529-29d0922e208c
 # ╟─3c6a773b-f3ad-42ec-bf81-808298b9199f
 # ╠═5cde3b1e-4ec3-449b-a791-f9c975e30e36
-# ╠═76be24f5-ad6d-4f77-8290-ff94c7271428
 # ╠═fdf5ba27-46c7-4d6b-a523-bdb96719aa9f
 # ╠═3535775c-2d63-4c92-8c22-8f47b9e2b294
 # ╟─00000000-0000-0000-0000-000000000001
